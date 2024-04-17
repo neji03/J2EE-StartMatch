@@ -6,7 +6,7 @@ import java.util.List;
 
 import entities.Profil;
 import entities.User;
-
+import entities.User;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -28,7 +28,7 @@ public class UserService {
     public UserService() {
         // TODO Auto-generated constructor stub
     }
-    public List<User> getAllSujects()
+    public List<User> getAllUsers()
     {
     List<User> users = new ArrayList<User>();
     TypedQuery<User> query = em.createNamedQuery("User.findAll",User.class);
@@ -68,7 +68,7 @@ public class UserService {
     	User user= new User();
     	TypedQuery<User> query = em.createNamedQuery("User.findByID",User.class);
     	query.setParameter(1, u.getIdUser());
-    	user = (User) query.getResultList();
+    	user = query.getResultList().get(0);
     	if (u.getAddress()!="") {
     		user.setAddress(u.getAddress());
     	}
