@@ -32,7 +32,7 @@ public class User implements Serializable {
 	private String email;
 
 	private String field;
-
+	@Id
 	private int idUser;
 
 	private byte isPerson;

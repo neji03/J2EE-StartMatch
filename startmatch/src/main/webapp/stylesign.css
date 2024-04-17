@@ -1,0 +1,56 @@
+@charset "ISO-8859-1";
+body{
+    background-image: url("../../assets/bg4.jpg");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+#bg{
+    padding-bottom:50px;
+}
+#nav{
+    padding-left:90px;
+}
+h1{
+    font-weight: bold;
+    font-family:fantasy;
+    color:#E3E7FF;
+}
+h6{
+    color:#E3E7FF;
+}
+h3{
+    color:#E3E7FF;
+}
+a {
+    text-decoration: none;
+  }
+.card{
+    border-radius: 15px;
+    background-color:rgba(157, 211, 254, 0.3);
+   color:white;
+}
+button.btn1{
+    color:white;
+     background: #3A5587;
+     border-top-left-radius: 22px;
+     border-bottom-left-radius: 22px ;
+     border-top-right-radius: 0px;
+     border-bottom-right-radius: 0px;
+ }
+ button.btn2{
+     color:white;
+     background: #3A5587;
+     border-radius:0 ;
+     margin-left: 3px
+ }
+ button.btn3{
+     color:white;
+     background: #3A5587;
+     border-radius:0px ;
+     border-top-right-radius: 22px;
+     border-bottom-right-radius: 22px;
+     margin-left: 3px
+ }
+ 

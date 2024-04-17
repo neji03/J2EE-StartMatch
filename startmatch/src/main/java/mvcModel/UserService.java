@@ -6,7 +6,7 @@ import java.util.List;
 
 import entities.Profil;
 import entities.User;
-import entities.User;
+
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
