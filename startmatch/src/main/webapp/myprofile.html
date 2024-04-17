@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="./myprofile.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container-fluid py-3" id="d1">
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center">
+                    <a href=""><h1>Start-Match</h1></a>
+                    <a href=""><h6>Start your entrepreneurship journey</h6></a>
+                </div>
+                <div class="col-md-7 d-flex justify-content-center align-items-center">
+                    <!-- Début de la barre de navigation -->
+                    <nav>
+                        <div class="container" id="navbarNavAltMarkup">
+                            <div class="row">
+                              <div class="col d-flex align-items-center">
+                                          <button type="button" class="btn btn1" id="button1" >
+                                            <a routerLink='/newsfeed'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentcolor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                                      <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                                    </svg>
+                                    home</a>
+                                  </button>
+                                  <a routerLink='/about-us2'><button type="button" class="btn btn2" id="button2">About Us</button></a>
+                                  <button type="button" class="btn btn2" id="button3" routerLink='/contactus2'>Contact Us</button>
+                                <form class="ms-3" >
+                                  <div class="input-group">
+                                    <span class="input-group-text">
+                                      <a routerLink="/search" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                      </svg></a>
+                                  </span>
+                                    <input type="search" class="form-control inp1" id="input1" placeholder="Search anything">
+                                  </div>
+                                </form>
+                                </div>
+                                
+                            </div>
+                            </div>
+                        
+                    </nav>
+                    <!-- Fin de la barre de navigation -->
+                </div>
+                <div class="col-md-2 text-center">
+                    <a routerLink='/profile'><h6>Benmoussa Heithem</h6></a>
+                    <a href="./myprofile.html"><img src="../../../assets/347245498_3570899629797993_7265237523852668848_n.jpg" height="75" width="81" id="pdp" class="rounded-circle"></a>
+                </div>
+            </div>
+        </div>
+        <div class="row " id="d2">
+
+            <div class="col-md-12 cover-photo">
+                <img src="../../../assets/c43d74556254ef9437f091ae018a300d.png" style="box-shadow:rgb(71, 90, 106) 3px 3px 6px 0px;" height="200px" width="100%" >
+  
+            </div>
+            <div class="offset-md-5 col-md-2 text-center"id="pdp2">
+                <img src="../../../assets/347245498_3570899629797993_7265237523852668848_n.jpg" style="box-shadow:rgb(71, 90, 106) 3px 3px 6px 0px;" height="75" width="81"  class="rounded-circle" >
+            </div>
+        </div>
+        <div class="row " id="name">
+            <div class="offset-md-4 col-md-4 text-center">
+                <h4>
+                    heithem Benmoussa
+                </h4>
+            </div>
+        </div>
+        <div class="row " id="bio">
+            <div class="offset-md-4 col-md-4 text-center">
+                <p style="text-align: center;">
+                    computer science engineer<br/>
+                    I have experience in business and startup founding
+                </p>
+                <button type="button" class="btn btn-danger" name="delete">Delete</button>
+                <button type="button" class="btn btn-success" name="update">Update</button>
+
+            </div>
+        </div>
+        <div class="row " id="posts">
+          <div class="col-6" style="margin-left: 25%; margin-top:50px">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="flexy">
+                        <a href=""><img   class="img-fluid eclipse" src="/media/347245498_3570899629797993_7265237523852668848_n.jpg"  alt="person/startup_img"></a>
+                        <div class="flexy-1">
+                           <a style="color:black ; text-decoration:none; " href='./myprofile.html'><span  class="name">Heithem Benmoussa</span></a>
+                            <span class="person-description">computer science engineer</span>
+                            <span class="person-description">10 avril 2024</span>
+                        </div> 
+                    </div>
+                </div>
+               
+                <span class="status badge badge-pill badge-warning">Founder</span>
+                <div class="card-body pos">
+                    <div class="text_of_post col-12 mt-2">
+                        <a href='./consultpost.html' class="text-dark" style="text-decoration:none;"><p class="font">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo nobis dolores sint expedita debitis quibusdam totam, molestias adipisci maiores officia quod illo at rem consequuntur. Voluptatum maiores ea officiis accusamus.</p></a>
+                    </div>
+                <div class="mb-3 ">
+                   <a h> <img  class="card-img-bottom " src="../../../assets/beautiful-african-american-woman-cafe_273609-5355.jpg"/></a>
+                </div>
+        
+                <div class="flexy-2">
+                        <button type="button" class="btn btn-success" name="updatePost">update</button>
+                        <button type="button"  class="btn btn-danger" name="deletePost">delete</button>
+                </div>
+                 
+               
+               
+            </div>
+        </div></div>
+
+        </div>
+       
+        </div>
+    <script src="./myprofile.js"></script>
+    </body>
+</html>

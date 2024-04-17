@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Sign in </title>
+<title>Sign as Startup </title>
 <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="./stylesign.css">
+	<link rel="stylesheet" href="./formpersonstyle.css">
     <style>
         body{
             background-image: url("https://t4.ftcdn.net/jpg/02/81/89/73/360_F_281897358_3rj9ZBSZHo5s0L1ug7uuIHadSxh9Cc75.jpg");
@@ -49,32 +49,40 @@
         </div>
     </div>
     <br><br><br>
-<div class="row">
-<div class=col>
-<h3>Sign up as :</h3>
-<br><br>
+    
+    <div class="card">
+        <br> 
+        <div class="row">
+            <div class="col offset-2">
+                <br> 
+        <h3 style="margin-left: 3rem; color: rgb(34, 99, 221)">Login with StartMatch</h3>
+            </div>
+                <form class="was-validated">
+                    <div class="row">
+                        <div class="col-sm-9 col-lg-8 offset-2">
+                            <label for="login" style="color: rgb(255, 255, 255);">Enter your email address:</label>
+                            <input required  type="text" class="form-control" id="login" style="background:#ffffff;">
+                        </div></div>
+                        <div class="row">
+                            <div class="col-sm-9 col-lg-8 offset-2">
+                            <label for="pswd" style="color: rgb(255, 255, 255);">Enter your Password:</label>
+                            <input required  type="text" class="form-control" id="pswd" style="background:#ffffff;" pattern=".{5,}" >
+                         </div></div>
+                         
+                        <a href=""><p style="color: rgb(227, 109, 54); margin-left: 70%; margin-top: 10px;">Forgot password ?</p></a>
+                            <div class="col-sm-9 col-lg-8 offset-2">
+                                
+                                <button type="submit" class="btn " style="margin-top: 30px; width:100%; background: #f17928 ;color:white"><a href='./newsfeed.html'>login</a></button>
+                        </div>
+        
+                        <div style="margin-left: 40%; margin-top: 50px;">
+                            <p style="color: rgb(209, 209, 209); display: inline;">No account ?</p>
+                            <a href='./signin.html' id="signUp"><p style="color: rgb(227, 109, 54); margin-left: 3px; margin-top: 10px; display: inline;">Sign Up</p></a>
+                        </div>
+        
+                        
+                        </form>
 </div>
-</div>
-<div  class="row">
-        <div class="offset-2 col-md-2">
-            <div class="card"  style="width: 18rem; margin-bottom: 30px;">
-                <div class="card-body">
-                    <h4 style="margin-left: 80px;">Start-Up</h4>
-                  </div>
-                  <a style="color:white" href="formstartup.html">
-                  	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="297" height="267"><path d="M64 48c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16h80V400c0-26.5 21.5-48 48-48s48 21.5 48 48v64h80c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm88 40c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H104c-8.8 0-16-7.2-16-16V104zM232 88h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H232c-8.8 0-16-7.2-16-16V104c0-8.8 7.2-16 16-16zM88 232c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H104c-8.8 0-16-7.2-16-16V232zm144-16h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H232c-8.8 0-16-7.2-16-16V232c0-8.8 7.2-16 16-16z"/></svg></a>
-              </div>
-        </div>
-        <div class="offset-2 col-md-2">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h4 style="margin-left: 80px;">Person</h4>
-                  </div>
-                 <a style="color:white" href="./formperson.html"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="297" height="267"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg></a>
-              </div>
-        </div>
     </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

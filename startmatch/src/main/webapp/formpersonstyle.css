@@ -1,12 +1,37 @@
 @charset "ISO-8859-1";
-/* body{
-    background-image: url("../../../assets/bg4.jpg");
-    background-repeat: no-repeat; 
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: blue;
-} */
+.row{
+    margin-top:40px;
+}
+
+p{color: antiquewhite;}
+span {
+    display: inline; 
+}
+
+a {
+    color:white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: inherit; 
+    text-decoration: underline; 
+}
+#done{background-color:#FF8600;
+width: 100px;
+}
+
+#switch {background-color:#FF8600;}
+#bio{resize:none;}
+a.btn{
+    color:white ;
+    text-decoration: none;
+}
+.card{
+    border-radius: 15px;
+    background-color:rgba(147, 172, 193, 0.8);
+   color:white;
+}
 #bg{
     padding-bottom:50px;
 }
