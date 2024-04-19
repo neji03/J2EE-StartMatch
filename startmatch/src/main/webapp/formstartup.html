@@ -54,7 +54,7 @@
         <br> 
         <h3 style="margin-left: 3rem; color: rgb(34, 99, 221)">Sign up a Startup :</h3>
         <br>
-        <form class="form was-validated">
+        <form action=Controller class="form was-validated">
             <div class="row">
                 <div class="col-md-5 col-lg-4 offset-lg-1">
                     <label for="fname" style="color: rgb(255, 255, 255);"> Name of start-up:</label>
@@ -69,12 +69,12 @@
             <div class="row">
                 <div class="col-md-5 col-lg-4 offset-lg-1">
                     <label for="pswd" style="color: rgb(255, 255, 255);">Password:</label>
-                    <input required style=" width: 400px; margin-bottom: 0px;" type="password" class="form-control" id="password" style="background:#ffffff;" pattern=".{5,}" name="pswd" >
+                    <input required style=" width: 400px; margin-bottom: 0px;" type="password" class="form-control" id="password" style="background:#ffffff;" pattern=".{5,}" name="password" >
                     <div class="invalid-feedback" style=" margin-bottom: 15px;">Enter at least 5 caracteres</div>
                 </div>
                 <div class="col-md-5 col-lg-4  offset-md-2 offset-lg-1">
                     <label for="confirmpsw" style="color: rgb(255, 255, 255);">Confirm Password :</label>
-                    <input required style=" width: 400px; margin-bottom: 15px;" type="password"  pattern=".{5,}" class="form-control" id="confirmpsw" style="background:#ffffff;" name="password">
+                    <input required style=" width: 400px; margin-bottom: 15px;" type="password"  pattern=".{5,}" class="form-control" id="confirmpsw" style="background:#ffffff;" name="password2">
                 </div>
                 
             </div>
@@ -101,10 +101,19 @@
                         <label for="field" style="color: rgb(255, 255, 255);">Field:</label>
                     <input  required style=" width: 400px; margin-bottom: 35px; " type="text" class="form-control" id="field" style="background:#ffffff;" name="field">
                 </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-lg-4 offset-lg-1">
+                        <label for="address" style="color: rgb(255, 255, 255);">Bio:</label>
+                        <input  required style=" width: 400px; margin-bottom: 35px;" type="text" class="form-control" id="address" style="background:#ffffff;" name="bio">
+                    </div>
+ 
+                </div>
     
     <div class="row" style="margin: 70px;">
         <div class="col offset-5">
-        <button type="click" id="done" class="btn btn-success" name="done"><a href='./newsfeed.html'>Done</a></button>
+        <input type=submit name=myBtn value="insert startup">
+        <button type="button" id="done" class="btn btn-success" name="myBtn"><a href='./newsfeed.html'>Done</a></button>
     </div>
     </div>
 
