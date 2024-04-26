@@ -260,9 +260,8 @@ public class Controller extends HttpServlet {
 	    		RequestDispatcher rd = request.getRequestDispatcher("select all users.html");
     			rd.forward(request, response);
 			}else {
-    			response.setContentType("text/html");
-    			PrintWriter out = response.getWriter();
-    			out.println("<script>alert('Mot de passe incorrect !')</script>");
+    			
+    			request.setAttribute("pwdinc", true);
     			RequestDispatcher rd = request.getRequestDispatcher("login.html");
     			rd.forward(request, response);
     			}
