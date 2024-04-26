@@ -10,12 +10,14 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Profil.findAll", query="SELECT p FROM Profil p")
+@NamedQueries({
+@NamedQuery(name="Profil.findAll", query="SELECT p FROM Profil p"),
+@NamedQuery(name="Profil.findByLogin", query="SELECT p FROM Profil p where login=?1")
+})
 public class Profil implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String login;
 
 	private String password;

@@ -13,7 +13,8 @@ import java.util.Date;
 @NamedQueries({
 	@NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
 	@NamedQuery(name="User.findByID", query="SELECT u FROM User u where idUser =?1"),
-	@NamedQuery(name="User.findByProfil", query="SELECT u FROM User u where profil =?1")
+	@NamedQuery(name="User.findByProfil", query="SELECT u FROM User u where profil =?1"),
+	@NamedQuery(name="User.findByLoginAndPwd", query="SELECT u FROM User u where profil.login =?1 AND profil.password=?2")
 })
 
 public class User implements Serializable {

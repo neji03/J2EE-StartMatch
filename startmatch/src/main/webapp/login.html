@@ -57,22 +57,21 @@
                 <br> 
         <h3 style="margin-left: 3rem; color: rgb(34, 99, 221)">Login with StartMatch</h3>
             </div>
-                <form class="was-validated">
+                <form class="was-validated" action="ControllerD" method="get">
                     <div class="row">
                         <div class="col-sm-9 col-lg-8 offset-2">
                             <label for="login" style="color: rgb(255, 255, 255);">Enter your email address:</label>
-                            <input required  type="text" class="form-control" id="login" style="background:#ffffff;">
+                            <input required  type="text" class="form-control" name=login id="login" style="background:#ffffff;">
                         </div></div>
                         <div class="row">
                             <div class="col-sm-9 col-lg-8 offset-2">
                             <label for="pswd" style="color: rgb(255, 255, 255);">Enter your Password:</label>
-                            <input required  type="text" class="form-control" id="pswd" style="background:#ffffff;" pattern=".{5,}" >
+                            <input required  type="text" class="form-control" name=password id="pswd" style="background:#ffffff;" pattern=".{5,}" >
                          </div></div>
                          
                         <a href=""><p style="color: rgb(227, 109, 54); margin-left: 70%; margin-top: 10px;">Forgot password ?</p></a>
                             <div class="col-sm-9 col-lg-8 offset-2">
-                                
-                                <button type="submit" class="btn " style="margin-top: 30px; width:100%; background: #f17928 ;color:white"><a href='./newsfeed.html'>login</a></button>
+                                <input type="submit" class="btn " style="margin-top: 30px; width:100%; background: #f17928 ;color:white" name="myBtn" value="Login">
                         </div>
         
                         <div style="margin-left: 40%; margin-top: 50px;">

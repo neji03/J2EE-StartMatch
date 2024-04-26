@@ -3,9 +3,7 @@ package mvcModel;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import entities.Profil;
-import entities.User;
 import entities.User;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
@@ -99,6 +97,18 @@ public class UserService {
     	}
     	return user;
     }
+    public User getUserByLoginAndPwd(String login, String pwd) {
+		User u=null;
+		TypedQuery<User> query = em.createNamedQuery("User.findByLoginAndPwd",User.class);
+		query.setParameter(1, login);
+		query.setParameter(2, pwd);
+		try {
+		u = query.getSingleResult();
+		}catch(Exception e) {
+			u=null;
+		}
+		return u;
+	}
     
     
 }
