@@ -1,41 +1,42 @@
 package mvcController;
 
 import jakarta.ejb.EJB;
-import jakarta.json.JsonObject;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import mvcModel.AccountService;
-import mvcModel.NewsfeedService;
+import mvcModel.NewsFeedService;
 import mvcModel.PostService;
 import mvcModel.ProfilService;
 import mvcModel.UserService;
 
+import java.io.OutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.io.InputStream;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Base64;
 import java.util.List;
 
-import entities.Account;
-import entities.Newsfeed;
-import entities.Post;
-import entities.Profil;
-import entities.User;
+import entites.Account;
+import entites.Newsfeed;
+import entites.Post;
+import entites.Profil;
+import entites.Utilisateur;
 
 /**
  * Servlet implementation class Controller
  */
 
-@WebServlet("/ControllerD")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@EJB
@@ -45,13 +46,12 @@ public class Controller extends HttpServlet {
 	@EJB
 	private AccountService accountService;
 	@EJB
-	private NewsfeedService newsfeedService;
+	private NewsFeedService newsfeedService;
 	@EJB
 	private PostService postService;
     /**
      * @see HttpServlet#HttpServlet()
      */
-	
     public Controller() {
         super();
         // TODO Auto-generated constructor stub
@@ -62,53 +62,50 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		//response.setContentType("application/json");
-		//response.setCharacterEncoding("UTF-8");
 		String btnValue=request.getParameter("myBtn");
 		System.out.println(btnValue);
-		if (btnValue.equals("select all users") &&btnValue != null) {
-			List<User>users=userService.getAllUsers();
+		if (btnValue != null&&btnValue.equals("select all users") ) {
+			List<Utilisateur>users=userService.getAllUtilisateurs();
 			String s="";
 			
-			for (User i : users) {
+			for (Utilisateur i : users) {
 				s+=(i.getIdUser()+" "+i.getEmail()+" "+i.getIsPerson()+"\n");
 			}
 			if (s.equals(""))s="no user found";
-			response.getWriter().append(s);
+			System.out.println(s);
 			
-		}else if (btnValue.equals("select user by id") &&btnValue != null) {
-			int iduser=Integer.parseInt(request.getParameter("iduser"));
-			List<User>users=userService.getUserByID(iduser);
+		}else if (btnValue != null&&btnValue.equals("select Utilisateur by id") ) {
+			int idUtilisateur=Integer.parseInt(request.getParameter("idUtilisateur"));
+			List<Utilisateur>Utilisateurs=userService.getUtilisateurByID(idUtilisateur);
 			String s="";
-			for (User i : users) {
+			for (Utilisateur i : Utilisateurs) {
 				s+=(i.getIdUser()+" "+i.getEmail()+" "+i.getIsPerson()+"\n");
 			}
-			if (s.equals(""))s="no user found";
-			response.getWriter().append(s);
+			if (s.equals(""))s="no Utilisateur found";
+			System.out.println(s);
 		}else if (btnValue.equals("insert account") &&btnValue != null) {
 			Account a=new Account();
 			a.setReportsNb(0);
 			accountService.createAccount(a);
 			List<Account>accounts=accountService.getAllAccounts();
 			a=accounts.get(accounts.size()-1);
-			response.getWriter().append(""+a.getIdAccount());
-		}else if (btnValue.equals("insert newsfeed") &&btnValue != null) {
+			System.out.println(""+a.getIdAccount());
+		}else if (btnValue != null&&btnValue.equals("insert newsfeed") ) {
 			Newsfeed n=new Newsfeed();
 			n.setLastFilter("");
 			newsfeedService.createNewsfeed(n);
 			List<Newsfeed>news=newsfeedService.getAllNews();
 			n=news.get(news.size()-1);
-			response.getWriter().append(""+n.getIdNewsFeed());
-		}else if (btnValue.equals("insert profil") &&btnValue != null) {
+			System.out.println(""+n.getIdNewsFeed());
+		}else if (btnValue != null&&btnValue.equals("insert profil") ) {
 			Profil p=new Profil();
 			p.setLogin(request.getParameter("login"));
 			p.setPassword(request.getParameter("password"));
 			profilService.createProfil(p);
 			List<Profil>profils=profilService.getProfilByLogin(p.getLogin());
 			p=profils.get(profils.size()-1);
-			response.getWriter().append(""+p.getLogin());
-		}else if (btnValue.equals("insert startup") &&btnValue != null) {
+			System.out.println(""+p.getLogin());
+		}else if (btnValue != null&&btnValue.equals("insert startup") ) {
 //insert profil
 			Profil p=new Profil();
 			p.setLogin(request.getParameter("email"));
@@ -128,14 +125,15 @@ public class Controller extends HttpServlet {
 			accountService.createAccount(a);
 			List<Account>accounts=accountService.getAllAccounts();
 			a=accounts.get(accounts.size()-1);
-//insert user startup
-			User u=new User();
+//insert Utilisateur startup
+			Utilisateur u=new Utilisateur();
 			u.setAccount(a);
 			u.setNewsfeed(n);
 			u.setProfil(p);
 			u.setAddress(request.getParameter("address"));
 			u.setBio(request.getParameter("bio"));
 			u.setIsPerson((byte) 0);
+			u.setSName(request.getParameter("sname"));
 			u.setField(request.getParameter("field"));
 			u.setEmail(request.getParameter("email"));
 			u.setPhone_Num(Integer.parseInt(request.getParameter("phone_num")));
@@ -145,18 +143,19 @@ public class Controller extends HttpServlet {
 			Date date = Date.valueOf(request.getParameter("sdateofcreation"));
 			u.setSDateOfCreation(date);
 			u.setSName(request.getParameter("sname"));
-			userService.createUser(u);
-			List<User>users=userService.getAllUsers();
-			u=users.get(users.size()-1);
-			response.getWriter().append(""+u.getIdUser());
-		}else if (btnValue.equals("insert person") &&btnValue != null) {
+			userService.createUtilisateur(u);
+			List<Utilisateur>Utilisateurs=userService.getAllUtilisateurs();
+			u=Utilisateurs.get(Utilisateurs.size()-1);
+			System.out.println(""+u.getIdUser());
+			response.sendRedirect("login.jsp");
+		}else if (btnValue != null&&btnValue.equals("insert person")) {
 //insert profil
 			Profil p=new Profil();
 			p.setLogin(request.getParameter("email"));
 			p.setPassword(request.getParameter("password"));
 			profilService.createProfil(p);
 			List<Profil>profils=profilService.getProfilByLogin(p.getLogin());
-			p=profils.get(profils.size()-1);
+			p=profils.get(0);
 //insert newsfeed
 			Newsfeed n=new Newsfeed();
 			n.setLastFilter("");
@@ -169,8 +168,8 @@ public class Controller extends HttpServlet {
 			accountService.createAccount(a);
 			List<Account>accounts=accountService.getAllAccounts();
 			a=accounts.get(accounts.size()-1);
-//insert user startup
-			User u=new User();
+//insert Utilisateur startup
+			Utilisateur u=new Utilisateur();
 			u.setAccount(a);
 			u.setNewsfeed(n);
 			u.setProfil(p);
@@ -188,15 +187,16 @@ public class Controller extends HttpServlet {
 			u.setPFirst_name(request.getParameter("pfirst_name"));
 			u.setPExpertise(request.getParameter("pexpertise"));
 			u.setPGender(request.getParameter("pgender"));
-			u.setPJobPosition(request.getParameter("pjobposition"));
+			u.setPJobPostition(request.getParameter("pjobposition"));
 			u.setPLast_name(request.getParameter("plast_name"));
-			userService.createUser(u);
-			List<User>users=userService.getAllUsers();
-			u=users.get(users.size()-1);
-			response.getWriter().append(""+u.getIdUser());
-		}else if (btnValue.equals("update startup") &&btnValue != null) {
-			User u=new User();
-			u.setIdUser(Integer.parseInt(request.getParameter("iduser")));
+			userService.createUtilisateur(u);
+			List<Utilisateur>Utilisateurs=userService.getAllUtilisateurs();
+			u=Utilisateurs.get(Utilisateurs.size()-1);
+			System.out.println(""+u.getIdUser());
+			response.sendRedirect("login.jsp");
+		}else if (btnValue != null&&btnValue.equals("update startup") ) {
+			Utilisateur u=new Utilisateur();
+			u.setIdUser(Integer.parseInt(request.getParameter("idUtilisateur")));
 			u.setAddress(request.getParameter("address"));
 			u.setBio(request.getParameter("bio"));
 			u.setField(request.getParameter("field"));
@@ -205,16 +205,16 @@ public class Controller extends HttpServlet {
 			Date date = Date.valueOf(request.getParameter("sdateofcreation"));
 			u.setSDateOfCreation(date);
 			u.setPhone_Num(Integer.parseInt(request.getParameter("phone_num")));
-			u=userService.updateUser(u);
-			response.getWriter().append(""+u.getIdUser());
-		}else if (btnValue.equals("delete user") &&btnValue != null) {
+			u=userService.updateUtilisateur(u);
+			System.out.println(""+u.getIdUser());
+		}else if (btnValue != null&&btnValue.equals("delete user") ) {
 
-			userService.deleteUserById(Integer.parseInt(request.getParameter("iduser")));
-			List<User>users=userService.getAllUsers();
-			for (User i : users) { 
-			response.getWriter().append(""+i.getIdUser()+" "+i.getEmail()+"\n");
+			userService.deleteUtilisateurById(Integer.parseInt(request.getParameter("idUtilisateur")));
+			List<Utilisateur>Utilisateurs=userService.getAllUtilisateurs();
+			for (Utilisateur i : Utilisateurs) { 
+			System.out.println(""+i.getIdUser()+" "+i.getEmail()+"\n");
 			}
-		}else if (btnValue.equals("insert post") &&btnValue != null) {
+		}else if (btnValue != null&&btnValue.equals("insert post") ) {
 			Post p=new Post();
 			LocalDate localDate = LocalDate.now();
 	        Date sqlDate = Date.valueOf(localDate);
@@ -225,75 +225,74 @@ public class Controller extends HttpServlet {
 			p.setReportNb(0);
 			p.setTags("cofunder");
 			p.setTextContent("hello les babies");
-			p.setUser_idUser(1);
+			p.setUtilisateur(userService.getUtilisateurByID(1).get(0));
 			postService.createPost(p);
 			List<Post>post=postService.getAllPost();
 			p=post.get(post.size()-1);
-			response.getWriter().append(""+p.getIdPost());
-		}else if (btnValue.equals("select post by id") &&btnValue != null) {
+			System.out.println(""+p.getIdPost());
+		}else if (btnValue != null&&btnValue.equals("select post by id")) {
 			int idpost=Integer.parseInt(request.getParameter("idpost"));
 			Post post=postService.getPostById(idpost);
 			String s="";
-				s+=(post.getIdPost()+" "+post.getUser_idUser()+"\n");
-			response.getWriter().append(s);
-		}else if (btnValue.equals("delete post") &&btnValue != null) {
+				s+=(post.getIdPost()+" "+post.getUtilisateur().getIdUser()+"\n");
+			System.out.println(s);
+		}else if (btnValue != null&&btnValue.equals("delete post")) {
 			int idpost=Integer.parseInt(request.getParameter("idpost"));
 			postService.deletePostById(idpost);
 		
 			List<Post>posts=postService.getAllPost();
 			for (Post post : posts) { 
-			response.getWriter().append(post.getIdPost()+" "+post.getUser_idUser()+"\n");
+			System.out.println(post.getIdPost()+" "+post.getUtilisateur().getIdUser()+"\n");
 			}
 			} else
 		if(btnValue!=null && btnValue.equals("Login")){
-		//	response.getWriter().append("in");
 			System.out.println("in");
 			String login=request.getParameter("login");
 			String pwd=request.getParameter("password");
-			User user=userService.getUserByLoginAndPwd(login, pwd);
+			List<Post> posts=postService.getAllPost();
+			List<Utilisateur> users=userService.getAllUtilisateurs();
+			Utilisateur user=userService.getUtilisateurByLoginAndPwd(login, pwd);
 			if (user!=null) {
 				System.out.println(user.getEmail());
 				HttpSession session = request.getSession(true);
-	    		session.setMaxInactiveInterval(300);
+				session.setMaxInactiveInterval(600000);
+	    		session.setAttribute("posts",posts);
+	    		session.setAttribute("users",users);
 	    		session.setAttribute("user", user.getIdUser());
-	    		
-	    		RequestDispatcher rd = request.getRequestDispatcher("select all users.html");
+	    		session.setAttribute("Bio", user.getBio());
+	    		session.setAttribute("Address", user.getAddress());
+	    		session.setAttribute("Cpic", user.getCpic());
+	    		session.setAttribute("Date", user.getDate());
+	    		session.setAttribute("Email", user.getEmail());
+	    		session.setAttribute("Field", user.getField());
+	    		session.setAttribute("IsPerson", user.getIsPerson());
+	    		session.setAttribute("PDateOfBirth", user.getPDateOfBirth());
+	    		session.setAttribute("PExpertise", user.getPExpertise());
+	    		session.setAttribute("PGender", user.getPGender());
+	    		session.setAttribute("PFirst_name", user.getPFirst_name());
+	    		session.setAttribute("Phone_Num", user.getPhone_Num());
+	    		session.setAttribute("PJobPostition", user.getPJobPostition());
+	    		session.setAttribute("PLast_name", user.getPLast_name());
+	    		session.setAttribute("Ppic", user.getPpic());
+	    		session.setAttribute("SDateOfCreation", user.getSDateOfCreation());
+	    		session.setAttribute("SName", user.getSName());
+	    		session.setAttribute("object", user);
+	    		RequestDispatcher rd = request.getRequestDispatcher("newsfeed.jsp");
     			rd.forward(request, response);
 			}else {
     			
-    			request.setAttribute("pwdinc", true);
+    			request.setAttribute("erreur", "login et/ou mdp incorrect");
     			RequestDispatcher rd = request.getRequestDispatcher("login.html");
     			rd.forward(request, response);
     			}
 		}
 		}
-	
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

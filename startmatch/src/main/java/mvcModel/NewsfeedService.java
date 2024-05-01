@@ -3,8 +3,7 @@ package mvcModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import entities.Newsfeed;
-import entities.Newsfeed;
+import entites.Newsfeed;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -12,20 +11,20 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
 /**
- * Session Bean implementation class NewsfeedService
+ * Session Bean implementation class NewsFeedService
  */
 @Stateless
 @LocalBean
-public class NewsfeedService {
+public class NewsFeedService {
 	@PersistenceContext(unitName="startmatch")
 	private EntityManager em;
     /**
      * Default constructor. 
      */
-    public NewsfeedService() {
+    public NewsFeedService() {
         // TODO Auto-generated constructor stub
     }
-	public void createNewsfeed(Newsfeed n) {
+    public void createNewsfeed(Newsfeed n) {
 		em.persist(n);
 		
 	}

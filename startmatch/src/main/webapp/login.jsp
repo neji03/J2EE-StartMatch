@@ -57,7 +57,7 @@
                 <br> 
         <h3 style="margin-left: 3rem; color: rgb(34, 99, 221)">Login with StartMatch</h3>
             </div>
-                <form class="was-validated" action="ControllerD" method="get">
+                <form class="was-validated" action="Controller" method="post">
                     <div class="row">
                         <div class="col-sm-9 col-lg-8 offset-2">
                             <label for="login" style="color: rgb(255, 255, 255);">Enter your email address:</label>

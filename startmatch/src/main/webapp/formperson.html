@@ -54,7 +54,7 @@
         <br> 
         <h3 style="margin-left: 3rem; color: rgb(34, 99, 221)">Sign up a Person :</h3>
         <br>
-    <form class="form was-validated">
+    <form enctype="multipart/form-data" class="form was-validated" action="Controller">
         <div class="row">
             <div class="col-md-5 col-lg-4 offset-lg-1">
                 <label for="email" style="color: rgb(255, 255, 255); ">Email:</label>
@@ -75,7 +75,7 @@
 
             <div class="col-md-5  col-lg-4 offset-md-2 offset-lg-1">
                 <label for="lname" style="color: rgb(255, 255, 255);">Last name:</label>
-                <input required style=" width: 400px; margin-bottom: 35px;" type="text" class="form-control" id="lname" style="background:#ffffff;" name="plastname">
+                <input required style=" width: 400px; margin-bottom: 35px;" type="text" class="form-control" id="lname" style="background:#ffffff;" name="plast_name">
             </div>
             
         </div>
@@ -87,7 +87,7 @@
             </div>
             <div class="col-md-5  col-lg-4 offset-md-2 offset-lg-1">
                 <label for="confirmpsw" style="color: rgb(255, 255, 255);">Confirm Password :</label>
-                <input required style=" width: 400px; margin-bottom: 35px;" type="password"  pattern=".{5,}" class="form-control" id="confirmpsw" style="background:#ffffff;" name="password">
+                <input required style=" width: 400px; margin-bottom: 35px;" type="password"  pattern=".{5,}" class="form-control" id="confirmpsw" style="background:#ffffff;" name="password2">
             </div>
             
         </div>
@@ -133,11 +133,11 @@
             <div class="col-md-5 col-lg-4 offset-lg-1">
                 <p id="gender" style="color: rgb(255, 255, 255);">Gender:</p>
                 <div class="form-check form-check-inline">
-                    <input  required type="radio" class="form-check-input" id="male" name="pgender" style="margin-bottom: 30px;" value="male">
+                    <input  required type="radio" class="form-check-input" id="male" name="pgender" style="margin-bottom: 30px;" value="h">
                     <label class="form-check-label" for="male" style="color: #ffffff;">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input required type="radio" class="form-check-input" id="female" name="pgender"  value="female">
+                    <input required type="radio" class="form-check-input" id="female" name="pgender"  value="f">
                     <label class="form-check-label" for="female" style="color: #ffffff;">Female</label>
                 </div>
             </div>
@@ -149,7 +149,7 @@
     
     <div class="row" style="margin: 70px;">
         <div class="col offset-5">
-        <button type="click" id="done" class="btn btn-success" name="done"><a href='./newsfeed.html'>Done</a></button>
+        <button type="click" id="done" class="btn btn-success" value="insert person" name="myBtn"><a href='./newsfeed.html'>Done</a></button>
     </div>
     </div>
 

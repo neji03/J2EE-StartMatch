@@ -3,9 +3,7 @@ package mvcModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import entities.Account;
-import entities.Profil;
-import entities.Profil;
+import entites.Profil;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -18,15 +16,16 @@ import jakarta.persistence.TypedQuery;
 @Stateless
 @LocalBean
 public class ProfilService {
-	@PersistenceContext(unitName="startmatch")
-	private EntityManager em;
+
     /**
      * Default constructor. 
      */
+	@PersistenceContext(unitName="startmatch")
+	private EntityManager em;
     public ProfilService() {
         // TODO Auto-generated constructor stub
     }
-	public void createProfil(Profil p) {
+    public void createProfil(Profil p) {
 		em.persist(p);
 		
 	}
@@ -47,5 +46,13 @@ public class ProfilService {
 			return Profils;
 		    }
 	}
-
+	public List<Profil> getProfilByIdProfil(int id) {
+		{
+			List<Profil> Profils = new ArrayList<Profil>();
+			TypedQuery<Profil> query = em.createNamedQuery("Profil.findById",Profil.class);
+			query.setParameter(1, id);
+			Profils = query.getResultList();
+			return Profils;
+		    }
+	}
 }

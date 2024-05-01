@@ -3,7 +3,7 @@ package mvcModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import entities.Account;
+import entites.Account;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -24,8 +24,7 @@ public class AccountService {
     public AccountService() {
         // TODO Auto-generated constructor stub
     }
-
-	public void createAccount(Account a) {
+    public void createAccount(Account a) {
 		em.persist(a);
 		
 	}

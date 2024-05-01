@@ -1,0 +1,50 @@
+@charset "ISO-8859-1";
+button.btn1{
+        color:white;
+        background: #BAC7DF;
+        border-top-left-radius: 22px;
+        border-bottom-left-radius: 22px ;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    button.btn2{
+        color:white;
+        background: #BAC7DF;
+        border-radius:0 ;
+        margin-left: 3px
+    }
+    input.inp1{
+        color:white;
+        background: #BAC7DF; 
+        border-top-right-radius: 22px ;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius:22px;
+    }
+    .form-control::placeholder{
+        color:white;
+    }
+    .bi-search{
+        color:white;
+        background-color:#BAC7DF ;
+    }
+    .input-group-text{
+        background-color: #BAC7DF;
+        border-radius: 0px;
+        margin-left: -13px;
+    }
+    button{
+        width: 120px;
+        max-width: 120px;
+        min-width: 120px;
+        display: inline-block;
+    }
+    .input-group{
+        width: 200px;
+        max-width: 200px;
+        min-width: 200px;
+    }
+    a{
+        color:white ;
+        text-decoration: none;
+    }

@@ -1,10 +1,9 @@
 package mvcModel;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import entities.Profil;
-import entities.User;
+import entites.Profil;
+import entites.Utilisateur;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -12,7 +11,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
 /**
- * Session Bean implementation class userService
+ * Session Bean implementation class UtilisateurService
  */
 @Stateless
 @LocalBean
@@ -26,80 +25,80 @@ public class UserService {
     public UserService() {
         // TODO Auto-generated constructor stub
     }
-    public List<User> getAllUsers()
+    public List<Utilisateur> getAllUtilisateurs()
     {
-    List<User> users = new ArrayList<User>();
-    TypedQuery<User> query = em.createNamedQuery("User.findAll",User.class);
-    users = query.getResultList();
-    return users;
+    List<Utilisateur> Utilisateurs = new ArrayList<Utilisateur>();
+    TypedQuery<Utilisateur> query = em.createNamedQuery("Utilisateur.findAll",Utilisateur.class);
+    Utilisateurs = query.getResultList();
+    return Utilisateurs;
     }
-    public List<User> getUserByID(int idUser)
+    public List<Utilisateur> getUtilisateurByID(int idUtilisateur)
     {
-	List<User> users = new ArrayList<User>();
-	TypedQuery<User> query = em.createNamedQuery("User.findByID",User.class);
-	query.setParameter(1, idUser);
-	users = query.getResultList();
-	return users;
+	List<Utilisateur> Utilisateurs = new ArrayList<Utilisateur>();
+	TypedQuery<Utilisateur> query = em.createNamedQuery("Utilisateur.findByID",Utilisateur.class);
+	query.setParameter(1, idUtilisateur);
+	Utilisateurs = query.getResultList();
+	return Utilisateurs;
     }
-    public List<User> getUserByProfil(Profil p)
+    public List<Utilisateur> getUtilisateurByProfil(Profil p)
     {
-	List<User> users = new ArrayList<User>();
-	TypedQuery<User> query = em.createNamedQuery("User.findByProfil",User.class);
+	List<Utilisateur> Utilisateurs = new ArrayList<Utilisateur>();
+	TypedQuery<Utilisateur> query = em.createNamedQuery("Utilisateur.findByProfil",Utilisateur.class);
 	query.setParameter(1, p);
-	users = query.getResultList();
-	return users;
+	Utilisateurs = query.getResultList();
+	return Utilisateurs;
     }
-    public void createUser(User user) {
-		em.persist(user);
+    public void createUtilisateur(Utilisateur Utilisateur) {
+		em.persist(Utilisateur);
 	}
-    public List<User> deleteUserById(int idUser){
-    	List<User> users=new ArrayList<User>();
-    	User u=em.find(User.class, idUser);
+    public List<Utilisateur> deleteUtilisateurById(int idUtilisateur){
+    	List<Utilisateur> Utilisateurs=new ArrayList<Utilisateur>();
+    	Utilisateur u=em.find(Utilisateur.class, idUtilisateur);
     	if (u!=null) {
     		em.remove(u);
     	}
-    	TypedQuery<User> query=em.createNamedQuery("User.findAll", User.class);
-    	users=query.getResultList();
-    	return users;
+    	TypedQuery<Utilisateur> query=em.createNamedQuery("Utilisateur.findAll", Utilisateur.class);
+    	Utilisateurs=query.getResultList();
+    	return Utilisateurs;
     }
-    public User updateUser(User u) {
-    	User user= new User();
-    	TypedQuery<User> query = em.createNamedQuery("User.findByID",User.class);
+    public Utilisateur updateUtilisateur(Utilisateur u) {
+    	Utilisateur Utilisateur= new Utilisateur();
+    	TypedQuery<Utilisateur> query = em.createNamedQuery("Utilisateur.findByID",Utilisateur.class);
     	query.setParameter(1, u.getIdUser());
-    	user = query.getResultList().get(0);
+    	Utilisateur = query.getResultList().get(0);
     	if (u.getAddress()!="") {
-    		user.setAddress(u.getAddress());
+    		Utilisateur.setAddress(u.getAddress());
     	}
     	if (u.getBio()!="") {
-    		user.setBio(u.getBio());
+    		Utilisateur.setBio(u.getBio());
     	}
     	if (u.getCpic()!=null) {
-    		user.setCpic(u.getCpic());
+    		Utilisateur.setCpic(u.getCpic());
     	}
     	if (u.getPpic()!=null) {
-    		user.setPpic(u.getPpic());
+    		Utilisateur.setPpic(u.getPpic());
     	}
     	if (u.getEmail()!="") {
-    		user.setEmail(u.getEmail());
+    		Utilisateur.setEmail(u.getEmail());
     	}
-    	if(u.getPhone_Num()!=0)user.setPhone_Num(u.getPhone_Num());
-    	if(u.getField()!="") user.setField(u.getField());
+    	if(u.getPhone_Num()!=0)Utilisateur.setPhone_Num(u.getPhone_Num());
+    	if(u.getField()!="") Utilisateur.setField(u.getField());
     	if(u.getIsPerson()!=1) {
-    		if(u.getPDateOfBirth()!=null) user.setPDateOfBirth(u.getPDateOfBirth());
-        	if(u.getPExpertise()!="") user.setPExpertise(u.getPExpertise());
-        	if(u.getPFirst_name()!="")user.setPFirst_name(u.getPFirst_name());
-        	if(u.getPLast_name()!="")user.setPLast_name(u.getPLast_name());
-        	if(u.getPGender()!="")user.setPGender(u.getPGender());
-        	if(u.getPJobPosition()!="")user.setPJobPosition(u.getPJobPosition());
+    		if(u.getPDateOfBirth()!=null) Utilisateur.setPDateOfBirth(u.getPDateOfBirth());
+        	if(u.getPExpertise()!="") Utilisateur.setPExpertise(u.getPExpertise());
+        	if(u.getPFirst_name()!="")Utilisateur.setPFirst_name(u.getPFirst_name());
+        	if(u.getPLast_name()!="")Utilisateur.setPLast_name(u.getPLast_name());
+        	if(u.getPGender()!="")Utilisateur.setPGender(u.getPGender());
+        	if(u.getPJobPostition()!="")Utilisateur.setPJobPostition(u.getPJobPostition());
     	}else {
-    		if(u.getSDateOfCreation()!=null)user.setSDateOfCreation(u.getSDateOfCreation());
-    		if(u.getSName()!="")user.setSName(u.getSName());
+    		if(u.getSDateOfCreation()!=null)Utilisateur.setSDateOfCreation(u.getSDateOfCreation());
+    		if(u.getSName()!="")Utilisateur.setSName(u.getSName());
     	}
-    	return user;
+    	return Utilisateur;
     }
-    public User getUserByLoginAndPwd(String login, String pwd) {
-		User u=null;
-		TypedQuery<User> query = em.createNamedQuery("User.findByLoginAndPwd",User.class);
+    public Utilisateur getUtilisateurByLoginAndPwd(String login, String pwd) {
+    	Utilisateur u=null;
+		TypedQuery<Utilisateur> query = em.createNamedQuery("Utilisateur.findByLoginAndPwd",Utilisateur.class);
 		query.setParameter(1, login);
 		query.setParameter(2, pwd);
 		try {
@@ -112,3 +111,5 @@ public class UserService {
     
     
 }
+
+

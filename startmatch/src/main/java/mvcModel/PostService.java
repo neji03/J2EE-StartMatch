@@ -1,15 +1,13 @@
 package mvcModel;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import entities.Post;
+import entites.Post;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 /**
@@ -18,27 +16,15 @@ import jakarta.persistence.TypedQuery;
 @Stateless
 @LocalBean
 public class PostService {
-	
 	@PersistenceContext(unitName="startmatch")
 	private EntityManager em;
-
-	
-	public void addPost(Post post) { 
-		
-		em.persist(post);
-	}
-
     /**
-     * 
+     * Default constructor. 
      */
     public PostService() {
         // TODO Auto-generated constructor stub
     }
-    
- 
-    
-
-	public List<Post> getAllPost() {
+    public List<Post> getAllPost() {
 		List<Post> posts = new ArrayList<Post>();
 		TypedQuery<Post> query = em.createNamedQuery("Post.findAll", Post.class);
 		posts = query.getResultList();
@@ -65,25 +51,6 @@ public class PostService {
 		query.setParameter(1, user_idUser);
 		posts = query.getResultList(); 
 		return posts;}
-	
-	
-
-    
-    
-
-	/*public void setPost(String field, String mediaContent, int reactNb, int reportNb ,int savesNb, String tags, String textContent ,int user_idUser , Date dateOfCreation) {
-		Query query = em.createNamedQuery("Post.addPost");
-		query.setParameter(1, field);
-		query.setParameter(2, mediaContent);
-		query.setParameter(3, reactNb);
-		query.setParameter(4, reportNb);
-		query.setParameter(5, savesNb);
-		query.setParameter(6, tags);
-		query.setParameter(7, textContent);
-		query.setParameter(8, user_idUser);
-		query.setParameter(9, dateOfCreation);} */
-	
-	
 	public String deletePostById(int idPost){
 		List<Post> posts=new ArrayList<Post>();
     	TypedQuery <Post> query = em.createNamedQuery("Post.findAllById",Post.class);
@@ -116,6 +83,4 @@ public class PostService {
 		em.persist(p);
 		
 	}
-	
-
 }
