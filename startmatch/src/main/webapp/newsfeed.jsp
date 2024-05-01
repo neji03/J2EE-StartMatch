@@ -68,17 +68,19 @@
                 </nav>
         </div>
         <div class="col-md-2 text-center" id="profile-name">
-            
+            <form action="Controller">
+           
             <c:if test="${sessionScope.IsPerson==1}">
-                <a href='./profile'><h6><c:out value="${sessionScope.PFirst_name} ${sessionScope.PLast_name}"/></h6></a>
+                <button type=submit name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"value="Consultmyprofil"><h6><c:out value="${sessionScope.PFirst_name} ${sessionScope.PLast_name}"/></h6></button>
             </c:if>
             <c:if test="${sessionScope.IsPerson==0}">
-                <a href='./profile'><h6><c:out value="${sessionScope.SName}"/></h6></a>
+                <button type=submit name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"value="Consultmyprofil" ><h6><c:out value="${sessionScope.SName}"/></h6></button>
             </c:if>
+            </form>
         </div>
         <div class="col-md-1 text-center">
             <a href='./profile'>
-                <img src="data:image/jpeg;base64,<c:out value='${sessionScope.ppic}'/>" height="75" width="81" id="pdp" class="rounded-circle">
+                <img src="data:image/jpeg;base64,<c:out value='${sessionScope.Ppic}'/>" height="75" width="81" id="pdp" class="rounded-circle">
               </a>
         </div>
     </div>
@@ -122,19 +124,21 @@
 <!-- DEBUT DE CREATE POST+POST AFF -->
   <div class="col-lg-6 ">
         <div class="container">
-    <form action="Controller" method="get" >
+    <form action="ControllerUpload" enctype="multipart/form-data" method="post" >
     <div class="create-post-container">
         <div class="user">
         <div class="user-profile">
             <a link="/profile" ><img src="data:image/jpeg;base64,${sessionScope.Ppic}" alt="user-pdp"></a>
         </div>
+        <input type=text value="${sessionScope.user}" name="iduser" style="display:none;">
         <div class="post-input-container">
+            
             <textarea class="form-control" name="textcontent" id="inputText" rows="3"  cols="43" placeholder="What's on your mind" required></textarea>
-
+			
         </div></div>
         <div class="buttons">
         <div class="file-upload col-md-3">
-            <input type="file"  id="fileInput" accept="image/*, video/*" name="mediacontent" style="display: none;">
+            <input type="file"  id="fileInput" accept="image/*, video/*" name="file" style="display: none;">
             <label for="fileInput">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
   <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
@@ -149,9 +153,9 @@
 </svg> Type
             </button>
             <ul class="dropdown-menu">
-                <li><input class="form-check-input" type="checkbox" id="founder" >Founder</li>
-                <li><input class="form-check-input" type="checkbox" id="co-founder">Co-Founder</li>
-                <li><input class="form-check-input" type="checkbox" id="investor">Investor</li>
+                <li><input class="form-check-input" type="checkbox" name="tag" id="founder" >Founder</li>
+                <li><input class="form-check-input" type="checkbox" name="tag" id="co-founder">Co-Founder</li>
+                <li><input class="form-check-input" type="checkbox" name="tag" id="investor">Investor</li>
             </ul>
                
         </div>
@@ -163,16 +167,15 @@
 </svg> Fields
             </button>
             <ul class="dropdown-menu" id="a">
-               <li><input class="form-check-input" type="checkbox" id="ai" >Artificial Intelligence </li>
-                <li><input class="form-check-input" type="checkbox" id="energy">Renewable Energy</li>
-                <li><input class="form-check-input" type="checkbox" id="cs">Cybersecurity</li> 
-                <li><input class="form-check-input" type="checkbox" id="investor">Cybersecurity</li> 
-                <li><input class="form-check-input" type="checkbox" id="health">Health and Wellness</li> 
-                <li><input class="form-check-input" type="checkbox" id="FinTech">FinTech</li> 
-                <li><input class="form-check-input" type="checkbox" id="education">Online Education</li> 
-                <li><input class="form-check-input" type="checkbox" id="web">Web Development</li> 
-                <li><input class="form-check-input" type="checkbox" id="AgriTech">AgriTech</li> 
-                <li><input class="form-check-input" type="checkbox" id="commerce">E-commerce</li> 
+               <li><input class="form-check-input" type="checkbox" name="field" id="ai" >Artificial Intelligence </li>
+                <li><input class="form-check-input" type="checkbox" name="field" id="energy">Renewable Energy</li>
+                <li><input class="form-check-input" type="checkbox" name="field" id="cs">Cybersecurity</li> 
+                <li><input class="form-check-input" type="checkbox" name="field"id="health">Health and Wellness</li> 
+                <li><input class="form-check-input" type="checkbox" name="field" id="FinTech">FinTech</li> 
+                <li><input class="form-check-input" type="checkbox" name="field" id="education">Online Education</li> 
+                <li><input class="form-check-input" type="checkbox" name="field" id="web">Web Development</li> 
+                <li><input class="form-check-input" type="checkbox" name="field" id="AgriTech">AgriTech</li> 
+                <li><input class="form-check-input" type="checkbox" name="field" id="commerce">E-commerce</li> 
             </ul>
                
         </div>
@@ -242,13 +245,13 @@
             
                 <img  href='/OtherPorfile' class="img-fluid eclipse"  src="${ post.utilisateur.ppic}" alt="person/startup_img">
                 <div class="flexy-1">
-                <form action="Controller" method="post">
-                        <input type="number" value="${post.utilisateur.idUser}" name="user" style="display: none;"><br/>
+                <form action="Controller" method="get">
+                        <input type="number" value="${post.utilisateur.idUser}" name="iduser" style="display: none;"><br/>
                         <c:if test="${post.utilisateur.isPerson==1}">
-                    <button type="submit" value="consult other profil" name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"> ${post.utilisateur.PFirst_name} ${post.utilisateur.PLast_name} </button>
+                    <button type="submit" value="consult other" name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"> ${post.utilisateur.PFirst_name} ${post.utilisateur.PLast_name} </button>
                     </c:if>
                     <c:if test="${post.utilisateur.isPerson==0}">
-                    <button type="submit" value="consult other profil" name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"> ${post.utilisateur.SName}</button>
+                    <button type="submit" value="consult other" name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"> ${post.utilisateur.SName}</button>
                     </c:if>
                         
                   </form > 

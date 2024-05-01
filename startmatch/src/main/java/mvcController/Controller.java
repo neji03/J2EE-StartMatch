@@ -214,22 +214,6 @@ public class Controller extends HttpServlet {
 			for (Utilisateur i : Utilisateurs) { 
 			System.out.println(""+i.getIdUser()+" "+i.getEmail()+"\n");
 			}
-		}else if (btnValue != null&&btnValue.equals("insert post") ) {
-			Post p=new Post();
-			LocalDate localDate = LocalDate.now();
-	        Date sqlDate = Date.valueOf(localDate);
-			p.setDateOfCreation(sqlDate);
-			p.setField("info");
-			p.setReactNb(0);
-			p.setSavesNb(0);
-			p.setReportNb(0);
-			p.setTags("cofunder");
-			p.setTextContent("hello les babies");
-			p.setUtilisateur(userService.getUtilisateurByID(1).get(0));
-			postService.createPost(p);
-			List<Post>post=postService.getAllPost();
-			p=post.get(post.size()-1);
-			System.out.println(""+p.getIdPost());
 		}else if (btnValue != null&&btnValue.equals("select post by id")) {
 			int idpost=Integer.parseInt(request.getParameter("idpost"));
 			Post post=postService.getPostById(idpost);
@@ -276,7 +260,6 @@ public class Controller extends HttpServlet {
 	    		session.setAttribute("Ppic", user.getPpic());
 	    		session.setAttribute("SDateOfCreation", user.getSDateOfCreation());
 	    		session.setAttribute("SName", user.getSName());
-	    		session.setAttribute("object", user);
 	    		RequestDispatcher rd = request.getRequestDispatcher("newsfeed.jsp");
     			rd.forward(request, response);
 			}else {
@@ -285,10 +268,19 @@ public class Controller extends HttpServlet {
     			RequestDispatcher rd = request.getRequestDispatcher("login.html");
     			rd.forward(request, response);
     			}
-		}else if(btnValue!=null&&btnValue.equals("consult other profil")) {
-			int a=Integer.parseInt(request.getParameter("user"));
-			System.out.println(""+a);
-		}
+		}else if(btnValue!=null && btnValue.equals("consult other")){
+            System.out.println("in test consult other");
+            int iduser=Integer.parseInt(request.getParameter("iduser"));
+            List<Utilisateur>users=userService.getUtilisateurByID(iduser);
+            request.setAttribute("user",users.get(0));
+            RequestDispatcher rd =request.getRequestDispatcher("consultOtherprofile.jsp");
+            rd.forward(request,response);
+            }else if(btnValue!=null && btnValue.equals("Consultmyprofil")) {
+            	HttpSession session = request.getSession();
+            	
+            	RequestDispatcher rd =request.getRequestDispatcher("ConsultMyProfile.jsp");
+                rd.forward(request,response);
+            }
 		}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
