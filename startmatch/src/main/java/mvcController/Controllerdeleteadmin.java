@@ -16,17 +16,17 @@ import java.util.List;
 import entites.Post;
 
 /**
- * Servlet implementation class Controller_update
+ * Servlet implementation class Controllerdeleteadmin
  */
-@WebServlet("/Controllerupdate")
-public class Controller_update extends HttpServlet {
+@WebServlet("/Controllerdeleteadmin")
+public class Controllerdeleteadmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      @EJB
+	@EJB
       private PostService postService;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Controller_update() {
+    public Controllerdeleteadmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,25 +36,22 @@ public class Controller_update extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("bonnaa serra");
-		 HttpSession session = request.getSession();
-		 List<Post> posts=postService.getAllPost();
-		 session.setAttribute("posts", posts);
-		String btnValue1=request.getParameter("updateBtn1");
-		
-		 if(btnValue1!=null && btnValue1.equals("update")) {
-			String valeur=request.getParameter("sel_post");
-			System.out.println("bonjour");
-			Post p=postService.getPostById(Integer.parseInt(valeur));
-			request.setAttribute("sel_post1",valeur);
-			request.setAttribute("post",p);
-			RequestDispatcher rd = request.getRequestDispatcher("updatepost.jsp");
-			rd.forward(request, response);
-			//String idp= request.getParameter("sel_post");
-			
-		  
-	 }
-		 
+		String btnValue=request.getParameter("deleteBtnad");
+		System.out.println(btnValue);
+		System.out.println("onad");
+		 if (btnValue != null && btnValue.equals("delete")) {
+			 System.out.println("onad2");
+            int idPost = Integer.parseInt(request.getParameter("del_postadmin"));
+            Post p=postService.getPostById(idPost);
+           // postService.deletePostById(idPost);
+            String msg=postService.deletePostById(p.getIdPost());
+            	System.out.println(msg);
+             HttpSession session = request.getSession();
+        	 List<Post> posts=postService.getReportedPost();
+        	 session.setAttribute("reportedposts", posts);
+            RequestDispatcher rd = request.getRequestDispatcher("consultadminpannel.jsp");
+            rd.forward(request, response);
+        }
 	}
 
 	/**

@@ -38,4 +38,18 @@ public class AccountService {
 		    }
 
 	}
+	public Account updateNbReports(int accountId) {
+        Account account = new Account();
+        TypedQuery<Account> query = em.createNamedQuery("Account.findByID", Account.class);
+        query.setParameter(1, accountId);
+        account = query.getSingleResult();
+
+        if (account != null) {
+            int newNbReports = account.getReportsNb() + 1;
+            account.setReportsNb(newNbReports);
+            em.merge(account);
+        }
+
+        return account;
+    }
 }

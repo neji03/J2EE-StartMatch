@@ -116,7 +116,10 @@
                     ${requestScope.user1.field}<br/>
                     ${requestScope.user1.bio}
                 </p>
-                <button type="button" class="btn btn-danger" name="myBtn" value="report user">Report</button>
+                <form method="post" action="<c:url value='Controller'/>">
+                    <input type="number" name="idaccount" value="${requestScope.user1.account.idAccount}" style="display: none;"><br/>
+                    <button type="submit" class="btn btn-danger" name="myBtn" value="report user">Report</button>
+                    </form >
 
 
         </div></div>
@@ -127,7 +130,7 @@
 				                <div class="card mb-3">
 				                    <div class="card-body">
 				                        <div class="flexy">
-				                            <img href='/OtherPorfile' class="img-fluid eclipse" src="${post.picture}" alt="person/startup_img">
+				                            <img href='/OtherPorfile' class="img-fluid eclipse" src="${post.utilisateur.ppic}" alt="person/startup_img">
 				                            <div class="flexy-1">
 				                                <span href='/OtherPorfile' class="name">${post.utilisateur.PFirst_name} ${post.utilisateur.PLast_name}</span>
 				                                <span class="person-description">${post.utilisateur.field}</span>
@@ -146,11 +149,18 @@
 				                            <a href='/consultpost' class="text-dark" style="text-decoration:none;"><p class="font">${post.textContent}</p></a>
 				                        </div>
 				                        <div class="mb-3 ">
-				                            <a href='/consultpost'><img class="card-img-bottom"    src="data:image/jpeg;base64,${post.media_content}" /></a>
+				                            <a href='/consultpost'><img class="card-img-bottom"    src="data:image/jpeg;base64,${post.mediaContent}" /></a>
 				                        </div>
 				                        <div class="flexy-2">
-				                            <a href="/updatepost/${post.idPost}"><button type="button" class="btn btn-success" name="myBtn" value="update user">update</button></a>
-				                            <button type="button" class="btn btn-danger" name="myBtn" value="delete post">delete</button>
+				                        	<form method="post" action="<c:url value='Controller'/>">
+				    <input type="hidden"  name="likePost"   value="${post.idPost}"/>
+				    <input type="submit" class="btn btn-success" name="myBtn" value="Like" > 
+				</form> 
+				                            <form method="post" action="<c:url value='Controller'/>">
+                    							
+                    							<button type="submit" class="btn btn-danger" name="myBtn" value="report post">Report</button>
+                    							<input type="number" name="idpost" value="${post.idPost}" style="display: none;"><br/>
+                    						</form >
 				                        </div>
 				                    </div>
 				                </div>

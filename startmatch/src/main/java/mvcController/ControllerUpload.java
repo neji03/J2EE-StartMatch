@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import mvcModel.AccountService;
 import mvcModel.NewsFeedService;
@@ -105,6 +106,9 @@ public class ControllerUpload extends HttpServlet {
 			List<Post>post=postService.getAllPost();
 			p=post.get(post.size()-1);
 			System.out.println(""+p.getIdPost());
+			HttpSession session = request.getSession();
+			 List<Post> posts=postService.getAllPost();
+			 session.setAttribute("posts", posts);
 			RequestDispatcher rd = request.getRequestDispatcher("newsfeed.jsp");
 			rd.forward(request, response);
 		}

@@ -59,4 +59,14 @@
     <servlet-name>Controllersave</servlet-name>
     <url-pattern>/Controllersave</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controllerdeleteadmin</display-name>
+    <servlet-name>Controllerdeleteadmin</servlet-name>
+    <servlet-class>mvcController.Controllerdeleteadmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controllerdeleteadmin</servlet-name>
+    <url-pattern>/Controllerdeleteadmin</url-pattern>
+  </servlet-mapping>
 </web-app>

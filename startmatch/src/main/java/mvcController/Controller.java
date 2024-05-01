@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import mvcModel.AccountService;
+import mvcModel.AdminService;
 import mvcModel.NewsFeedService;
 import mvcModel.PostService;
 import mvcModel.ProfilService;
@@ -28,6 +29,7 @@ import java.util.Base64;
 import java.util.List;
 
 import entites.Account;
+import entites.Admin;
 import entites.Newsfeed;
 import entites.Post;
 import entites.Profil;
@@ -49,6 +51,8 @@ public class Controller extends HttpServlet {
 	private NewsFeedService newsfeedService;
 	@EJB
 	private PostService postService;
+	@EJB
+	private AdminService adminService;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -228,46 +232,61 @@ public class Controller extends HttpServlet {
 			for (Post post : posts) { 
 			System.out.println(post.getIdPost()+" "+post.getUtilisateur().getIdUser()+"\n");
 			}
-			} else
-		if(btnValue!=null && btnValue.equals("Login")){
-			System.out.println("in");
-			String login=request.getParameter("login");
-			String pwd=request.getParameter("password");
-			List<Post> posts=postService.getAllPost();
-			List<Utilisateur> users=userService.getAllUtilisateurs();
-			Utilisateur user=userService.getUtilisateurByLoginAndPwd(login, pwd);
-			if (user!=null) {
-				System.out.println(user.getEmail());
-				HttpSession session = request.getSession(true);
-				session.setMaxInactiveInterval(600000);
-	    		session.setAttribute("posts",posts);
-	    		session.setAttribute("users",users);
-	    		session.setAttribute("user", user.getIdUser());
-	    		session.setAttribute("Bio", user.getBio());
-	    		session.setAttribute("Address", user.getAddress());
-	    		session.setAttribute("Cpic", user.getCpic());
-	    		session.setAttribute("Date", user.getDate());
-	    		session.setAttribute("Email", user.getEmail());
-	    		session.setAttribute("Field", user.getField());
-	    		session.setAttribute("IsPerson", user.getIsPerson());
-	    		session.setAttribute("PDateOfBirth", user.getPDateOfBirth());
-	    		session.setAttribute("PExpertise", user.getPExpertise());
-	    		session.setAttribute("PGender", user.getPGender());
-	    		session.setAttribute("PFirst_name", user.getPFirst_name());
-	    		session.setAttribute("Phone_Num", user.getPhone_Num());
-	    		session.setAttribute("PJobPostition", user.getPJobPostition());
-	    		session.setAttribute("PLast_name", user.getPLast_name());
-	    		session.setAttribute("Ppic", user.getPpic());
-	    		session.setAttribute("SDateOfCreation", user.getSDateOfCreation());
-	    		session.setAttribute("SName", user.getSName());
-	    		RequestDispatcher rd = request.getRequestDispatcher("newsfeed.jsp");
-    			rd.forward(request, response);
-			}else {
-    			
-    			request.setAttribute("erreur", "login et/ou mdp incorrect");
-    			RequestDispatcher rd = request.getRequestDispatcher("login.html");
-    			rd.forward(request, response);
-    			}
+		}else if(btnValue!=null && btnValue.equals("Login")){
+				//	response.getWriter().append("in");
+				System.out.println("in test login");
+				String login=request.getParameter("login");
+				String pwd=request.getParameter("password");
+				Utilisateur user=userService.getUtilisateurByLoginAndPwd(login, pwd);
+				List<Utilisateur> users=userService.getAllUtilisateurs();
+				List<Post> posts=postService.getAllPost();
+				System.out.println(posts);
+				if (user!=null) {
+					//System.out.println(user.getProfil().getAdmins().size());
+					HttpSession session = request.getSession(true);
+		    		session.setMaxInactiveInterval(600000);
+		    		session.setAttribute("posts",posts);
+		    		session.setAttribute("users",users);
+		    		session.setAttribute("user", user.getIdUser());
+		    		session.setAttribute("Bio", user.getBio());
+		    		session.setAttribute("Address", user.getAddress());
+		    		session.setAttribute("Cpic", user.getCpic());
+		    		session.setAttribute("Date", user.getDate());
+		    		session.setAttribute("Email", user.getEmail());
+		    		session.setAttribute("Field", user.getField());
+		    		session.setAttribute("IsPerson", user.getIsPerson());
+		    		session.setAttribute("PDateOfBirth", user.getPDateOfBirth());
+		    		session.setAttribute("PExpertise", user.getPExpertise());
+		    		session.setAttribute("PGender", user.getPGender());
+		    		session.setAttribute("PFirst_name", user.getPFirst_name());
+		    		session.setAttribute("Phone_Num", user.getPhone_Num());
+		    		session.setAttribute("PJobPostition", user.getPJobPostition());
+		    		session.setAttribute("PLast_name", user.getPLast_name());
+		    		session.setAttribute("Ppic", user.getPpic());
+		    		session.setAttribute("SDateOfCreation", user.getSDateOfCreation());
+		    		session.setAttribute("SName", user.getSName());
+		    		//System.out.println("${sessionScope.user}");
+		    		RequestDispatcher rd = request.getRequestDispatcher("newsfeed.jsp");
+	    			rd.forward(request, response);
+				}else if(pwd.equals("password")&&login.equals("siladmin@start-match.com")) {
+					List<Post> posts_ad=postService.getReportedPost();
+					Admin admin=adminService.getAllAdmin();
+					HttpSession session = request.getSession(true);
+		    		session.setMaxInactiveInterval(600000);
+		    		session.setAttribute("reportedposts",posts_ad);
+		    		session.setAttribute("users",users);
+		    		session.setAttribute("admin", admin);
+		    		RequestDispatcher rd = request.getRequestDispatcher("consultadminpannel.jsp");
+	    			rd.forward(request, response);
+				}
+				else {
+					
+	    			
+	    			request.setAttribute("erreur", "login et/ou mdp incorrect");
+	    			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+	    			rd.forward(request, response);
+	    			}
+			
 		}else if(btnValue!=null && btnValue.equals("consult other")){
             System.out.println("in test consult other");
             int iduser=Integer.parseInt(request.getParameter("iduser"));
@@ -280,7 +299,33 @@ public class Controller extends HttpServlet {
             	System.out.println("Session scope: " + session.getAttribute("IsPerson"));
             	RequestDispatcher rd =request.getRequestDispatcher("ConsultMyProfile.jsp");
                 rd.forward(request,response);
-            }
+            }else if(btnValue!=null && btnValue.equals("report user")){
+                System.out.println("in test report user");
+                int idaccount=Integer.parseInt(request.getParameter("idaccount"));
+                Account acc=accountService.updateNbReports(idaccount);
+                if (acc!=null) {System.out.println("report done successfully");}
+                RequestDispatcher rd =request.getRequestDispatcher("newsfeed.jsp");
+    			rd.forward(request,response);
+                }else if(btnValue!=null && btnValue.equals("report post")){
+                    System.out.println("in test report post");
+                    int idpost=Integer.parseInt(request.getParameter("idpost"));
+                    Post p=postService.updateNbReports(idpost);
+                    if (p!=null) {System.out.println("report done successfully");}
+			RequestDispatcher rd =request.getRequestDispatcher("newsfeed.jsp");
+			rd.forward(request,response);
+			}else
+				if (btnValue != null&&btnValue.equals("Like")) {
+					System.out.println("d5alnaaa");
+			        int postId = Integer.parseInt(request.getParameter("likePost"));
+			        Post post = postService.getPostById(postId);
+			        post.setReactNb(post.getReactNb() + 1);
+			        System.out.println("setiina");
+			        postService.updatelike(post);
+			        System.out.println("likeena");
+			        request.setAttribute("post", post);
+			        RequestDispatcher rd = request.getRequestDispatcher("newsfeed.jsp");
+			        rd.forward(request, response);
+			    }
 		}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

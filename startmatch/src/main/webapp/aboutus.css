@@ -1,0 +1,77 @@
+@charset "ISO-8859-1";
+body{
+    background-image: url("../../assets/ba.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.font{
+    text-align: center;
+    font-weight: 600;
+    
+}
+.image{
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    
+}
+@media all and (min-width: 576px) and (max-width: 992px){
+    .image{
+        width: 100px; 
+        height: 100px; 
+        border-radius: 50%; 
+        object-fit: cover;
+    }
+}
+.font{
+    text-align: center;
+    font-weight: 600;
+    font-size:27px;
+}
+.big {
+    text-align: center;
+    font-weight: 600;
+    font-size:200spx;
+}
+
+.image{
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    
+}
+@media all and (min-width: 576px) and (max-width: 992px){
+    .image{
+        width: 90px; 
+        height: 90px; 
+        border-radius: 50%; 
+        object-fit: cover;
+    }
+}
+.pers_desc{
+   /* text-align: justify;*/
+    width:100%;
+}
+.person_name{
+    font-weight: 600;
+}
+.colored{
+    color: #757882;
+}
+#bg{
+    background-image: url("../../assets/ba.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.custom-bg-transparent{
+    /*background-color: transparent;
+    border:none;*/
+    margin-right: 10px;
+    border-radius: 20px 20px 20px;
+}

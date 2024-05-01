@@ -90,5 +90,27 @@ public class PostService {
     	em.merge(oldPost);
         return "update done successfully ";}
     	return "erreur";
+    }public Post updateNbReports(int postId) {
+        Post post = new Post();
+        TypedQuery<Post> query = em.createNamedQuery("Post.findAllById", Post.class);
+        query.setParameter(1, postId);
+        post = query.getSingleResult();
+
+        if (post != null) {
+            int newNbReports = post.getReportNb() + 1;
+            post.setReportNb(newNbReports);
+            em.merge(post);
+        }
+        
+        return post;
     }
+    public void updatelike(Post post) {
+        em.merge(post);
+    }
+	public List<Post> getReportedPost() {
+		List<Post> posts = new ArrayList<Post>();
+		TypedQuery<Post> query = em.createNamedQuery("Post.findReportedPost", Post.class);
+		posts = query.getResultList();
+		return posts;
+	}
 }

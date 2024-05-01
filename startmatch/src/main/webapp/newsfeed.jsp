@@ -49,7 +49,7 @@
                             </svg>
                             home</a>
                         </button>
-                        <a href='/about-us'><button type="button" class="btn btn2" id="button2">About Us</button></a>
+                        <a href='./aboutus.jsp'><button type="button" class="btn btn2" id="button2">About Us</button></a>
                         <button type="button" class="btn btn2" id="button3" href='/contactus2'>Contact Us</button>
                         <form class="ms-3" >
                         <div class="input-group">
@@ -228,7 +228,7 @@
 
         <div class="flexy-2">
                <form method="post" action="<c:url value='Controller_update'/>">
-               <a><input type="submit" class="btn btn-success" name="updateBtn1"   data-post-id="${post.idPost}" value="update" onclick="updatePost(this.dataset.postId)"></a>
+               <a><input type="submit" class="btn btn-success" name="updateBtn1"   data-post-id="${post.idPost}" value="update" ></a>
                 <input type="hidden"  name="sel_post"   value="${post.idPost}"/>
            </form>
            <form method="post" action="<c:url value='Controllerdelete'/>">
@@ -283,8 +283,16 @@
         </div>
 
         <div class="flexy-2">
-               <button type="button" name=like class="btn btn-success">Like</button>
-                <button type="button" name=report  class="btn btn-danger">Report</button>
+               <form method="post" action="<c:url value='Controller'/>">
+				    <input type="hidden"  name="likePost"   value="${post.idPost}"/>
+				    <input type="submit" class="btn btn-success" name="myBtn" value="Like" > 
+				</form> 
+                <form method="post" action="<c:url value='Controller'/>">
+                    
+                    <button type="submit" class="btn btn-danger" name="myBtn" value="report post">Report</button>
+                    <input type="number" name="idpost" value="${post.idPost}" style="display: none;"><br/>
+                    </form >
+                    
         </div>
          
        

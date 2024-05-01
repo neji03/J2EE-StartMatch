@@ -13,6 +13,7 @@ import java.util.Date;
 @NamedQueries({@NamedQuery(name="Post.findAll", query="SELECT p FROM Post p"),
 @NamedQuery(name="Post.findAllById", query="SELECT p FROM Post p where p.idPost=?1"),
 @NamedQuery(name="Post.findAllByTags", query="SELECT p FROM Post p where p.tags=?1"),
+@NamedQuery(name="Post.findReportedPost",query="SELECT p FROM Post p where P.reportNb>0"),
 @NamedQuery(name="Post.findAllByIdUser", query="SELECT p FROM Post p where p.utilisateur.idUser=?1")})
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;

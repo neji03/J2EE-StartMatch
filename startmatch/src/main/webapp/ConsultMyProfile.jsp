@@ -130,7 +130,7 @@
 				                <div class="card mb-3">
 				                    <div class="card-body">
 				                        <div class="flexy">
-				                            <img href='/OtherPorfile' class="img-fluid eclipse" src="${post.picture}" alt="person/startup_img">
+				                            <img href='/OtherPorfile' class="img-fluid eclipse" src="${post.utilisateur.ppic}" alt="person/startup_img">
 				                            <div class="flexy-1">
 				                                <span href='/OtherPorfile' class="name">${post.utilisateur.PFirst_name} ${post.utilisateur.PLast_name}</span>
 				                                <span class="person-description">${post.utilisateur.field}</span>
@@ -149,11 +149,11 @@
 				                            <a href='/consultpost' class="text-dark" style="text-decoration:none;"><p class="font">${post.textContent}</p></a>
 				                        </div>
 				                        <div class="mb-3 ">
-				                            <a href='/consultpost'><img class="card-img-bottom"    src="data:image/jpeg;base64,${post.media_content}" /></a>
+				                            <a href='/consultpost'><img class="card-img-bottom"    src="data:image/jpeg;base64,${post.mediaContent}" /></a>
 				                        </div>
 				                        <div class="flexy-2">
 				                            <form method="post" action="<c:url value='Controller_update'/>">
-               										<a><input type="submit" class="btn btn-success" name="updateBtn1"  data-post-id="${post.idPost}" value="update" onclick="updatePost(this,true)"></a>
+               										<a><input type="submit" class="btn btn-success" name="updateBtn1"  data-post-id="${post.idPost}" value="update"></a>
                										 
                 										<input type="hidden"  name="sel_post"   value="${post.idPost}"/>
            									</form>
