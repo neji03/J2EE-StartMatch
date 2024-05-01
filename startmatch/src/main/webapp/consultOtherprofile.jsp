@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
        <link href="./headernews.css" rel="stylesheet">
         <link rel="stylesheet" href="./navbarnews.css">
+        <link rel="stylesheet" href="./managepost.css">
 </head>
 <body>
 <!-- DEBUT DE NAVBAR DYNAMIQUE -->
@@ -55,12 +57,15 @@
         </div>
         <div class="col-md-2 text-center" id="profile-name">
             
+            <form action="Controller">
+           
             <c:if test="${sessionScope.IsPerson==1}">
-                <a href='./profile'><h6><c:out value="${sessionScope.PFirst_name} ${sessionScope.PLast_name}"/></h6></a>
+                <button type=submit name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"value="Consultmyprofil"><h6><c:out  value="${sessionScope.PFirst_name} ${sessionScope.PLast_name}" /></h6></button>
             </c:if>
             <c:if test="${sessionScope.IsPerson==0}">
-                <a href='./profile'><h6><c:out value="${sessionScope.SName}"/></h6></a>
+                <button type=submit name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"value="Consultmyprofil" ><h6><c:out value="${sessionScope.SName}" /></h6></button>
             </c:if>
+            </form>
         </div>
         <div class="col-md-1 text-center">
             <a href='./profile'>
@@ -75,11 +80,11 @@
  <div class="row " id="d2"> 
 
             <div class="col-md-12 cover-photo">
-                <img src="data:image/jpeg;base64,<c:out value='${requestScope.user.cpic}'/>" style="box-shadow:rgb(71, 90, 106) 3px 3px 6px 0px;" height="200px" width="100%" >
+                <img src="data:image/jpeg;base64,<c:out value='${requestScope.user1.cpic}'/>" style="box-shadow:rgb(71, 90, 106) 3px 3px 6px 0px;" height="200px" width="100%" >
   
             </div>
             <div class="offset-md-5 col-md-2 text-center"id="pdp2">
-                <img src="data:image/jpeg;base64,<c:out value='${requestScope.user.ppic}'/>" style="box-shadow:rgb(71, 90, 106) 3px 3px 6px 0px;" height="75" width="81"  class="rounded-circle" >
+                <img src="data:image/jpeg;base64,<c:out value='${requestScope.user1.ppic}'/>" style="box-shadow:rgb(71, 90, 106) 3px 3px 6px 0px;" height="75" width="81"  class="rounded-circle" >
             
             </div>
         </div>
@@ -87,11 +92,11 @@
             <div class="offset-md-4 col-md-4 text-center">
             <!-- NOM DU USER -->
             
-            <c:if test="${requestScope.user.isPerson==1}">
-                <h4><c:out value="${requestScope.user.PFirst_name} ${requestScope.user.PLast_name}"/></h4>
+            <c:if test="${requestScope.user1.isPerson==1}">
+                <h4><c:out value="${requestScope.user1.PFirst_name} ${requestScope.user1.PLast_name}"/></h4>
             </c:if>
-            <c:if test="${requestScope.user.isPerson==0}">
-                <h4><c:out value="${requestScope.user.SName}"/></h4>
+            <c:if test="${requestScope.user1.isPerson==0}">
+                <h4><c:out value="${requestScope.user1.SName}"/></h4>
             </c:if>
             </div>
         </div>
@@ -99,8 +104,8 @@
         <div class="row " id="bio">
             <div class="offset-md-4 col-md-4 text-center">
                 <p style="text-align: center;">
-                    ${requestScope.user.field}<br/>
-                    ${requestScope.user.bio}
+                    ${requestScope.user1.field}<br/>
+                    ${requestScope.user1.bio}
                 </p>
                 <button type="button" class="btn btn-danger" name="myBtn" value="report user">Report</button>
 
@@ -109,8 +114,7 @@
         <div class="row " id="posts">
           <div class="col-6" style="margin-left: 25%; margin-top:50px">
 	            <c:forEach var="post" items="${posts}">
-				    <c:if test="${post.utilisateur.idUser==requestScope.user}">
-				        
+					<c:if test="${post.utilisateur.idUser eq requestScope.user1.idUser}">				        
 				                <div class="card mb-3">
 				                    <div class="card-body">
 				                        <div class="flexy">
@@ -136,22 +140,22 @@
 				                            <a href='/consultpost'><img class="card-img-bottom"    src="data:image/jpeg;base64,${post.media_content}" /></a>
 				                        </div>
 				                        <div class="flexy-2">
-				                            <a href="/updatepost/${post.id_post}"><button type="button" class="btn btn-success" name="myBtn" value="update user">update</button></a>
+				                            <a href="/updatepost/${post.idPost}"><button type="button" class="btn btn-success" name="myBtn" value="update user">update</button></a>
 				                            <button type="button" class="btn btn-danger" name="myBtn" value="delete post">delete</button>
 				                        </div>
 				                    </div>
 				                </div>
-				            </div>
+				            
 				     
 				    </c:if>
 				</c:forEach>
                
                  
-               
+               </div>
                
             </div>
        
-    <script src="./myprofile.js"></script>
+
 
 </body>
 </html>

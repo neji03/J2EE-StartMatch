@@ -272,12 +272,12 @@ public class Controller extends HttpServlet {
             System.out.println("in test consult other");
             int iduser=Integer.parseInt(request.getParameter("iduser"));
             List<Utilisateur>users=userService.getUtilisateurByID(iduser);
-            request.setAttribute("user",users.get(0));
+            request.setAttribute("user1",users.get(0));
             RequestDispatcher rd =request.getRequestDispatcher("consultOtherprofile.jsp");
             rd.forward(request,response);
             }else if(btnValue!=null && btnValue.equals("Consultmyprofil")) {
             	HttpSession session = request.getSession();
-            	
+            	System.out.println("Session scope: " + session.getAttribute("IsPerson"));
             	RequestDispatcher rd =request.getRequestDispatcher("ConsultMyProfile.jsp");
                 rd.forward(request,response);
             }

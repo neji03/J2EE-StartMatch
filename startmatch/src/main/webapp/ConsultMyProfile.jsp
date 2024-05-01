@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
        <link href="./headernews.css" rel="stylesheet">
         <link rel="stylesheet" href="./navbarnews.css">
+        <link rel="stylesheet" href="./managepost.css">
 </head>
 <body>
 <!-- DEBUT DE NAVBAR DYNAMIQUE -->
@@ -59,10 +61,10 @@
             <form action="Controller">
            
             <c:if test="${sessionScope.IsPerson==1}">
-                <button type=submit name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"value="Consultmyprofil"><h6><c:out value="${sessionScope.PFirst_name} ${sessionScope.PLast_name}"/></h6></button>
+                <button type=submit name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"value="Consultmyprofil"><h6><c:out  value="${sessionScope.PFirst_name} ${sessionScope.PLast_name}" /></h6></button>
             </c:if>
             <c:if test="${sessionScope.IsPerson==0}">
-                <button type=submit name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"value="Consultmyprofil" ><h6><c:out value="${sessionScope.SName}"/></h6></button>
+                <button type=submit name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"value="Consultmyprofil" ><h6><c:out value="${sessionScope.SName}" /></h6></button>
             </c:if>
             </form>
         </div>
@@ -141,22 +143,27 @@
 				                            <a href='/consultpost'><img class="card-img-bottom"    src="data:image/jpeg;base64,${post.media_content}" /></a>
 				                        </div>
 				                        <div class="flexy-2">
-				                            <a href="/updatepost/${post.id_post}"><button type="button" class="btn btn-success" name="myBtn" value="update user">update</button></a>
-				                            <button type="button" class="btn btn-danger" name="myBtn" value="delete post">delete</button>
+				                            <form method="post" action="<c:url value='Controller_update'/>">
+               										<a><input type="submit" class="btn btn-success" name="updateBtn1"  data-post-id="${post.idPost}" value="update" onclick="updatePost(this,true)"></a>
+               										 <button type="button"  class="btn btn-danger"  >delete</button>
+                										<input type="hidden"  name="sel_post"   value="${post.idPost}"/>
+           									</form>
+				                            
 				                        </div>
 				                    </div>
 				                </div>
+				                </c:if>
+				                </c:forEach>
 				            </div>
 				     
-				    </c:if>
-				</c:forEach>
+				    
+				
                
                  
                
                
             </div>
        
-    <script src="./myprofile.js"></script>
 
 </body>
 </html>
