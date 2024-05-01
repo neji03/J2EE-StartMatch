@@ -83,4 +83,12 @@ public class PostService {
 		em.persist(p);
 		
 	}
+	public String updatePostByText(String textContent,Post updatedPost) {
+    	Post oldPost = em.find(Post.class, updatedPost.getIdPost());
+    	if (oldPost!=null) {
+    	oldPost.setTextContent(textContent);
+    	em.merge(oldPost);
+        return "update done successfully ";}
+    	return "erreur";
+    }
 }

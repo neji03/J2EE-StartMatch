@@ -1,6 +1,7 @@
 package mvcController;
 
 import jakarta.ejb.EJB;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -104,6 +105,8 @@ public class ControllerUpload extends HttpServlet {
 			List<Post>post=postService.getAllPost();
 			p=post.get(post.size()-1);
 			System.out.println(""+p.getIdPost());
+			RequestDispatcher rd = request.getRequestDispatcher("newsfeed.jsp");
+			rd.forward(request, response);
 		}
 	
 	private String extractFileName(Part part) {

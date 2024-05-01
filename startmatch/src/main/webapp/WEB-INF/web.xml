@@ -39,4 +39,24 @@
     <servlet-name>ControllerUpload</servlet-name>
     <url-pattern>/ControllerUpload</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controllerdelete</display-name>
+    <servlet-name>Controllerdelete</servlet-name>
+    <servlet-class>mvcController.Controllerdelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controllerdelete</servlet-name>
+    <url-pattern>/Controllerdelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controllersave</display-name>
+    <servlet-name>Controllersave</servlet-name>
+    <servlet-class>mvcController.Controllersave</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controllersave</servlet-name>
+    <url-pattern>/Controllersave</url-pattern>
+  </servlet-mapping>
 </web-app>

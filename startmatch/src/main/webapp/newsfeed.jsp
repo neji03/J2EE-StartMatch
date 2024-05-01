@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="./managepost.css">
         <style>
         body{
-            background-image: url("https://t4.ftcdn.net/jpg/02/81/89/73/360_F_281897358_3rj9ZBSZHo5s0L1ug7uuIHadSxh9Cc75.jpg");
+            background-image: url("https://i.ibb.co/yB0zp7s/ba.png");
     background-repeat: no-repeat; 
     background-position: center;
     background-attachment: fixed;
@@ -43,7 +43,7 @@
                     <div class="row">
                     <div class="col d-flex align-items-center">
                                 <button type="button" class="btn btn1" id="button1" >
-                                    <a href='/newsfeed'>
+                                    <a href='./newsfeed.jsp'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentcolor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                             <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
                             </svg>
@@ -104,11 +104,11 @@
 				    <c:if test="${sessionScope.PFirst_name != utilisateur.PFirst_name}">
 				      <li  class="list-group-item cus-bg">
 				        <div class="row">
-				          <div class="col-3 align-items">
+				          <div class="col-2 align-items">
 				            <a href="/OtherPorfile"><img src="data:image/jpeg;base64,<c:out value='${utilisateur.ppic}'/>"  height="45" width="51" id="pdp" class="rounded-circle" ></a>
 				          </div>
 				          <div class="col align-items">
-				            <a href="/OtherPorfile.jsp" style="text-decoration: none; color: black;"><p  style="margin-top: 11px;" id="profile-name">${utilisateur.PFirst_name} ${utilisateur.PLast_name}</p></a>
+				            <a href="/OtherPorfile.jsp" style="text-decoration: none; color: black;"><p  style="margin-top: 11px;" id="profile-name">${utilisateur.PFirst_name} ${utilisateur.PLast_name} ${utilisateur.SName} </p></a>
 				          </div>
 				        </div>
 				      </li>
@@ -137,7 +137,7 @@
 			
         </div></div>
         <div class="buttons">
-        <div class="file-upload col-md-3">
+        <div class="file-upload btn-group col-md-3">
             <input type="file"  id="fileInput" accept="image/*, video/*" name="file" style="display: none;">
             <label for="fileInput">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
@@ -194,14 +194,18 @@
     <div class="card mb-3">
         <div class="card-body">
             <div class="flexy">
-                <img  href='/OtherPorfile' class="img-fluid eclipse"  src="${ sessionScope.ppic}" alt="person/startup_img">
+                <img  href='/OtherPorfile' class="img-fluid eclipse"  src="data:image/jpeg;base64,${ sessionScope.ppic}" alt="person/startup_img">
                 <div class="flexy-1">
-                <c:if test="${post.utilisateur.isPerson==1}">
-                    <span href='/OtherPorfile' class="name">${post.utilisateur.PFirst_name} ${post.utilisateur.PLast_name}</span>
+                <form action="Controller" method="get">
+                        <input type="number" value="${post.utilisateur.idUser}" name="iduser" style="display: none;"><br/>
+                        <c:if test="${post.utilisateur.isPerson==1}">
+                    <button type="submit" value="Consultmyprofil" name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"> ${post.utilisateur.PFirst_name} ${post.utilisateur.PLast_name} </button>
                     </c:if>
                     <c:if test="${post.utilisateur.isPerson==0}">
-                    <span href='/OtherPorfile' class="name">${post.utilisateur.SName}</span>
+                    <button type="submit" value="Consultmyprofil" name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"> ${post.utilisateur.SName}</button>
                     </c:if>
+                        
+                  </form > 
                     <span class="person-description">${post.utilisateur.field}</span>
                     <span class="person-description">${post.dateOfCreation}</span>
                 </div> 
@@ -219,15 +223,18 @@
                 <a href='/consultpost' class="text-dark" style="text-decoration:none;"><p class="font">${post.textContent}</p></a>
             </div>
         <div class="mb-3 ">
-           <a href='/consultpost'> <img  class="card-img-bottom " src= "post.media_content"/></a>
+           <a href='/consultpost'> <img  class="card-img-bottom " src= "data:image/jpeg;base64,${post.mediaContent}"/></a>
         </div>
 
         <div class="flexy-2">
-               <form method="post" action="<c:url value='Controllerupdate'/>">
+               <form method="post" action="<c:url value='Controller_update'/>">
                <a><input type="submit" class="btn btn-success" name="updateBtn1"   data-post-id="${post.idPost}" value="update" onclick="updatePost(this.dataset.postId)"></a>
-                <button type="button"  class="btn btn-danger"  >delete</button>
                 <input type="hidden"  name="sel_post"   value="${post.idPost}"/>
            </form>
+           <form method="post" action="<c:url value='Controllerdelete'/>">
+                    <input type="hidden"  name="del_post"   value="${post.idPost}"/>
+                    <input type="submit" class="btn btn-danger" name="deleteBtn" value="delete" >
+                </form>
         </div>
          
        
@@ -243,7 +250,7 @@
         <div class="card-body">
             <div class="flexy">
             
-                <img  href='/OtherPorfile' class="img-fluid eclipse"  src="${ post.utilisateur.ppic}" alt="person/startup_img">
+                <img  href='/OtherPorfile' class="img-fluid eclipse"  src="data:image/jpeg;base64,${post.utilisateur.ppic}" alt="person/startup_img">
                 <div class="flexy-1">
                 <form action="Controller" method="get">
                         <input type="number" value="${post.utilisateur.idUser}" name="iduser" style="display: none;"><br/>
@@ -272,7 +279,7 @@
                 <a href='/consultpost' class="text-dark" style="text-decoration:none;"><p class="font">${post.textContent}</p></a>
             </div>
         <div class="mb-3 ">
-           <a href='/consultpost'> <img  class="card-img-bottom " src= "post.media_content"/></a>
+           <a href='/consultpost'> <img  class="card-img-bottom " src= "data:image/jpeg;base64,${post.mediaContent}"/></a>
         </div>
 
         <div class="flexy-2">
