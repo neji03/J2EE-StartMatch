@@ -1,0 +1,43 @@
+.create-post-container{
+    width:100%;
+    background: #ffffff;
+    border-radius: 6px;
+    padding-bottom: 10px;
+    padding-top: 0px;
+    padding-left: 27px;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+}
+.user-profile img {
+    width:60px;
+    height: 60px;
+    border-radius:50% ;
+
+}
+.post-input-container {
+    padding-left: 20px;
+    padding-top: 30px;} 
+
+.post-input-container textarea{
+    width:100%;
+    border:0;
+    background : transparent;
+    outline:0;
+    border-bottom :1.5px solid #ccc;
+    resize:none;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+}
+#a li{
+    font-size: 15px
+}
+@media (width >= 1300px){
+    .butt{
+        margin-left: 27%;
+    }
+}

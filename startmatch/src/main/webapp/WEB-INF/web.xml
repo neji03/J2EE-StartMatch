@@ -19,4 +19,14 @@
     <servlet-name>Controller</servlet-name>
     <url-pattern>/Controller</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controller_update</display-name>
+    <servlet-name>Controller_update</servlet-name>
+    <servlet-class>mvcController.Controller_update</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller_update</servlet-name>
+    <url-pattern>/Controller_update</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -285,6 +285,9 @@ public class Controller extends HttpServlet {
     			RequestDispatcher rd = request.getRequestDispatcher("login.html");
     			rd.forward(request, response);
     			}
+		}else if(btnValue!=null&&btnValue.equals("consult other profil")) {
+			int a=Integer.parseInt(request.getParameter("user"));
+			System.out.println(""+a);
 		}
 		}
 	/**
