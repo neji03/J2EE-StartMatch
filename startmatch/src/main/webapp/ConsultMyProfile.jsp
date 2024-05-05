@@ -79,7 +79,7 @@
         </div>
         <div class="col-md-1 text-center">
             <a href='./profile'>
-                <img src="data:image/jpeg;base64,<c:out value='${sessionScope.Ppic}'/>" height="75" width="81" id="pdp" class="rounded-circle">
+                <img onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvqpd02ludas5XSdN3U-lPz8RRX1MtI8Fc4I_Ib-A8tQ&s%27;%22%3E'" src="data:image/jpeg;base64,<c:out value='${sessionScope.Ppic}'/>" height="75" width="81" id="pdp" class="rounded-circle">
               </a>
         </div>
     </div>
@@ -90,11 +90,11 @@
  <div class="row " id="d2">
 
             <div class="col-md-12 cover-photo">
-                <img src="data:image/jpeg;base64,<c:out value='${sessionScope.Cpic}'/>" style="box-shadow:rgb(71, 90, 106) 3px 3px 6px 0px;" height="200px" width="100%" >
+                <img onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2xn7Fx99ZeNNKtLt139ioNchBq1fsNQc-AdCp04CgTA&s'" src="data:image/jpeg;base64,<c:out value='${sessionScope.Cpic}'/>" style="box-shadow:rgb(71, 90, 106) 3px 3px 6px 0px;" height="200px" width="100%" >
   
             </div>
             <div class="offset-md-5 col-md-2 text-center"id="pdp2">
-                <img src="data:image/jpeg;base64,<c:out value='${sessionScope.Ppic}'/>" style="box-shadow:rgb(71, 90, 106) 3px 3px 6px 0px;" height="75" width="81"  class="rounded-circle" >
+                <img onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvqpd02ludas5XSdN3U-lPz8RRX1MtI8Fc4I_Ib-A8tQ&s%27;%22%3E'" src="data:image/jpeg;base64,<c:out value='${sessionScope.Ppic}'/>" style="box-shadow:rgb(71, 90, 106) 3px 3px 6px 0px;" height="75" width="81"  class="rounded-circle" >
             
             </div>
         </div>
@@ -130,7 +130,7 @@
 				                <div class="card mb-3">
 				                    <div class="card-body">
 				                        <div class="flexy">
-				                            <img href='/OtherPorfile' class="img-fluid eclipse" src="${post.utilisateur.ppic}" alt="person/startup_img">
+				                            <img href='/OtherPorfile' onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvqpd02ludas5XSdN3U-lPz8RRX1MtI8Fc4I_Ib-A8tQ&s%27;%22%3E'" class="img-fluid eclipse" src="${post.utilisateur.ppic}" alt="person/startup_img">
 				                            <div class="flexy-1">
 				                                <span href='/OtherPorfile' class="name">${post.utilisateur.PFirst_name} ${post.utilisateur.PLast_name}</span>
 				                                <span class="person-description">${post.utilisateur.field}</span>
@@ -149,7 +149,7 @@
 				                            <a href='/consultpost' class="text-dark" style="text-decoration:none;"><p class="font">${post.textContent}</p></a>
 				                        </div>
 				                        <div class="mb-3 ">
-				                            <a href='/consultpost'><img class="card-img-bottom"    src="data:image/jpeg;base64,${post.mediaContent}" /></a>
+				                            <a href='/consultpost'><img onerror="this.src='https://cloudinary.hbs.edu/hbsit/image/upload/s--5YPcmM0m--/f_auto,c_fill,h_375,w_750,/v20200101/681DA2E060F4CEE9AA1C606DE6117A9E.jpg'" class="card-img-bottom"    src="data:image/jpeg;base64,${post.mediaContent}" /></a>
 				                        </div>
 				                        <div class="flexy-2">
 				                            <form method="post" action="<c:url value='Controller_update'/>">

@@ -83,6 +83,7 @@ public class ControllerUpload extends HttpServlet {
 			if (checkedtag != null) {
 			    for (String tag : checkedtag) {
 			      checkedValuestags.append(tag).append(",");
+			      
 			    }
 			    checkedValuestags.setLength(checkedValuestags.length() - 1); // Remove the last comma
 			  }

@@ -77,7 +77,7 @@
         </div>
         <div class="col-md-1 text-center">
             <a href='./ConsultMyProfile.jsp'>
-                <img src="data:image/jpeg;base64,<c:out value='${sessionScope.ppic}'/>" height="75" width="81" id="pdp" class="rounded-circle">
+                <img onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvqpd02ludas5XSdN3U-lPz8RRX1MtI8Fc4I_Ib-A8tQ&s%27;%22%3E'" src="data:image/jpeg;base64,<c:out value='${sessionScope.ppic}'/>" height="75" width="81" id="pdp" class="rounded-circle">
               </a>
         </div>
     </div>
@@ -94,9 +94,9 @@
     <div class="card mb-3">
         <div class="card-body">
             <div class="flexy">
-                <img  href='./consultOtherprofile.jsp' class="img-fluid eclipse"  src="post.picture" alt="person/startup_img">
+                <img onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvqpd02ludas5XSdN3U-lPz8RRX1MtI8Fc4I_Ib-A8tQ&s%27;%22%3E'"  href='./consultOtherprofile.jsp' class="img-fluid eclipse"  src="post.picture" alt="person/startup_img">
                 <div class="flexy-1">
-                    <span href='./consultOtherprofile.jsp' class="name">${post.utilisateur.PFirst_name} ${post.utilisateur.PLast_name}</span>
+                    <span href='./consultOtherprofile.jsp' class="name">${post.utilisateur.PFirst_name} ${post.utilisateur.PLast_name} ${post.utilisateur.SName}</span>
                     <span class="person-description">${post.utilisateur.field}</span>
                     <span class="person-description">${post.dateOfCreation}</span>
                 </div> 
@@ -114,7 +114,7 @@
                <textarea class="form-control" name="textcontent">${post.textContent}</textarea>
             </div>
         <div class="mb-3 ">
-           <a href='/consultpost'> <img  class="card-img-bottom " src= "${post.mediaContent}"/></a>
+           <a href='/consultpost'> <img  onerror="this.src='https://cloudinary.hbs.edu/hbsit/image/upload/s--5YPcmM0m--/f_auto,c_fill,h_375,w_750,/v20200101/681DA2E060F4CEE9AA1C606DE6117A9E.jpg'" class="card-img-bottom " src= "${post.mediaContent}"/></a>
         </div>
 		<input type="hidden" name="idpost" value="${post.idPost}">
         <input type="submit" value="save" class="btn btn-success" name="saveBtn">

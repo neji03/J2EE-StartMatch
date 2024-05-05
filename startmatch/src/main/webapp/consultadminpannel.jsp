@@ -161,7 +161,7 @@
                 <a href='/consultpost' class="text-dark" style="text-decoration:none;"><p class="font">${post.textContent}</p></a>
             </div>
         <div class="mb-3 ">
-           <a href='/consultpost'> <img  class="card-img-bottom " src= "${post.mediaContent}" /></a>
+           <a href='/consultpost'> <img onerror="this.src='https://cloudinary.hbs.edu/hbsit/image/upload/s--5YPcmM0m--/f_auto,c_fill,h_375,w_750,/v20200101/681DA2E060F4CEE9AA1C606DE6117A9E.jpg'"  class="card-img-bottom " src= "${post.mediaContent}" /></a>
         </div>
 
         <div class="flexy-2">

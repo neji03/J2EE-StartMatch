@@ -80,7 +80,7 @@
         </div>
         <div class="col-md-1 text-center">
             <a href='./profile'>
-                <img src="data:image/jpeg;base64,<c:out value='${sessionScope.Ppic}'/>" height="75" width="81" id="pdp" class="rounded-circle">
+                <img onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvqpd02ludas5XSdN3U-lPz8RRX1MtI8Fc4I_Ib-A8tQ&s%27;%22%3E'" src="data:image/jpeg;base64,<c:out value='${sessionScope.Ppic}'/>" height="75" width="81" id="pdp" class="rounded-circle">
               </a>
         </div>
     </div>
@@ -101,18 +101,27 @@
                   </div>
                 <ul class="list-group list-group-flush cus-bg">
 				  <c:forEach var="utilisateur" items="${sessionScope.users}">
-				    <c:if test="${sessionScope.PFirst_name != utilisateur.PFirst_name}">
+				    
 				      <li  class="list-group-item cus-bg">
 				        <div class="row">
 				          <div class="col-2 align-items">
-				            <a href="/OtherPorfile"><img src="data:image/jpeg;base64,<c:out value='${utilisateur.ppic}'/>"  height="45" width="51" id="pdp" class="rounded-circle" ></a>
+				            <a href="/OtherPorfile"><img onerror="this.src='https://design.ncsu.edu/doctor-of-design/wp-content/uploads/sites/7/2021/07/late-career-persona-philip.jpg'" src="data:image/jpeg;base64,<c:out value='${utilisateur.ppic}'/>"  height="45" width="51" id="pdp" class="rounded-circle" ></a>
 				          </div>
 				          <div class="col align-items">
-				            <a href="/OtherPorfile.jsp" style="text-decoration: none; color: black;"><p  style="margin-top: 11px;" id="profile-name">${utilisateur.PFirst_name} ${utilisateur.PLast_name} ${utilisateur.SName} </p></a>
+				            <form action="Controller" method="get">
+                        <input type="number" value="${utilisateur.idUser}" name="iduser" style="display: none;"><br/>
+                        <c:if test="${utilisateur.isPerson==1}">
+                    <button type="submit" value="consult other" name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"> ${utilisateur.PFirst_name} ${utilisateur.PLast_name} </button>
+                    </c:if>
+                    <c:if test="${utilisateur.isPerson==0}">
+                    <button type="submit" value="consult other" name=myBtn  class="btn" style="margin-left: -10px;  margin-top: -45px;"> ${utilisateur.SName}</button>
+                    </c:if>
+                        
+                  </form > 
 				          </div>
 				        </div>
 				      </li>
-				    </c:if>
+				    
 				  </c:forEach>
 				</ul>
                 
@@ -125,10 +134,10 @@
   <div class="col-lg-6 ">
         <div class="container">
     <form action="ControllerUpload" enctype="multipart/form-data" method="post" >
-    <div class="create-post-container">
+    <div class="create-post-container" style="background-color:white;">
         <div class="user">
         <div class="user-profile">
-            <a link="/profile" ><img src="data:image/jpeg;base64,${sessionScope.Ppic}" alt="user-pdp"></a>
+            <a link="/profile" ><img onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvqpd02ludas5XSdN3U-lPz8RRX1MtI8Fc4I_Ib-A8tQ&s%27;%22%3E'" src="data:image/jpeg;base64,${sessionScope.Ppic}" width="70"   class="rounded-circle" alt="user-pdp"></a>
         </div>
         <input type=text value="${sessionScope.user}" name="iduser" style="display:none;">
         <div class="post-input-container">
@@ -154,7 +163,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li><input class="form-check-input" type="checkbox" name="tag" id="founder" >Founder</li>
-                <li><input class="form-check-input" type="checkbox" name="tag" id="co-founder">Co-Founder</li>
+                <li><input class="form-check-input" type="checkbox" name="tag" id="co-founder">co-founder</li>
                 <li><input class="form-check-input" type="checkbox" name="tag" id="investor">Investor</li>
             </ul>
                
@@ -194,7 +203,7 @@
     <div class="card mb-3">
         <div class="card-body">
             <div class="flexy">
-                <img  href='/OtherPorfile' class="img-fluid eclipse"  src="data:image/jpeg;base64,${ sessionScope.ppic}" alt="person/startup_img">
+                <img  href='/OtherPorfile' onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvqpd02ludas5XSdN3U-lPz8RRX1MtI8Fc4I_Ib-A8tQ&s%27;%22%3E'" class="img-fluid eclipse"  src="data:image/jpeg;base64,${ sessionScope.ppic}" alt="person/startup_img">
                 <div class="flexy-1">
                 <form action="Controller" method="get">
                         <input type="number" value="${post.utilisateur.idUser}" name="iduser" style="display: none;"><br/>
@@ -223,7 +232,7 @@
                 <a href='/consultpost' class="text-dark" style="text-decoration:none;"><p class="font">${post.textContent}</p></a>
             </div>
         <div class="mb-3 ">
-           <a href='/consultpost'> <img  class="card-img-bottom " src= "data:image/jpeg;base64,${post.mediaContent}"/></a>
+           <a href='/consultpost'> <img  class="card-img-bottom " onerror="this.src='https://cloudinary.hbs.edu/hbsit/image/upload/s--5YPcmM0m--/f_auto,c_fill,h_375,w_750,/v20200101/681DA2E060F4CEE9AA1C606DE6117A9E.jpg'" src= "data:image/jpeg;base64,${post.mediaContent}"/></a>
         </div>
 
         <div class="flexy-2">
@@ -250,7 +259,7 @@
         <div class="card-body">
             <div class="flexy">
             
-                <img  href='/OtherPorfile' class="img-fluid eclipse"  src="data:image/jpeg;base64,${post.utilisateur.ppic}" alt="person/startup_img">
+                <img  href='/OtherPorfile' class="img-fluid eclipse" onerror="this.src='https://design.ncsu.edu/doctor-of-design/wp-content/uploads/sites/7/2021/07/late-career-persona-philip.jpg'" src="data:image/jpeg;base64,${post.utilisateur.ppic}" alt="person/startup_img">
                 <div class="flexy-1">
                 <form action="Controller" method="get">
                         <input type="number" value="${post.utilisateur.idUser}" name="iduser" style="display: none;"><br/>
@@ -279,7 +288,7 @@
                 <a href='/consultpost' class="text-dark" style="text-decoration:none;"><p class="font">${post.textContent}</p></a>
             </div>
         <div class="mb-3 ">
-           <a href='/consultpost'> <img  class="card-img-bottom " src= "data:image/jpeg;base64,${post.mediaContent}"/></a>
+           <a href='/consultpost'> <img onerror="this.src='https://cloudinary.hbs.edu/hbsit/image/upload/s--5YPcmM0m--/f_auto,c_fill,h_375,w_750,/v20200101/681DA2E060F4CEE9AA1C606DE6117A9E.jpg'" class="card-img-bottom " src= "data:image/jpeg;base64,${post.mediaContent}"/></a>
         </div>
 
         <div class="flexy-2">
