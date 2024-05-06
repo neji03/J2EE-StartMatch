@@ -2,8 +2,11 @@ package mvcModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import entites.Post;
 import entites.Profil;
 import entites.Utilisateur;
+import jakarta.ejb.EJB;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -16,6 +19,8 @@ import jakarta.persistence.TypedQuery;
 @Stateless
 @LocalBean
 public class UserService {
+	@EJB
+	private PostService postService;
 
     /**
      * Default constructor. 
@@ -51,7 +56,7 @@ public class UserService {
     public void createUtilisateur(Utilisateur Utilisateur) {
 		em.persist(Utilisateur);
 	}
-    public List<Utilisateur> deleteUtilisateurById(int idUtilisateur){
+    /*public List<Utilisateur> deleteUtilisateurById(int idUtilisateur){
     	List<Utilisateur> Utilisateurs=new ArrayList<Utilisateur>();
     	Utilisateur u=em.find(Utilisateur.class, idUtilisateur);
     	if (u!=null) {
@@ -60,7 +65,7 @@ public class UserService {
     	TypedQuery<Utilisateur> query=em.createNamedQuery("Utilisateur.findAll", Utilisateur.class);
     	Utilisateurs=query.getResultList();
     	return Utilisateurs;
-    }
+    }*/
     public Utilisateur updateUtilisateur(Utilisateur u) {
     	Utilisateur Utilisateur= new Utilisateur();
     	TypedQuery<Utilisateur> query = em.createNamedQuery("Utilisateur.findByID",Utilisateur.class);
@@ -107,7 +112,39 @@ public class UserService {
 			u=null;
 		}
 		return u;
+		
 	}
+    public String deleteUtilisateurById(int idUser) {
+    	List<Utilisateur> utilisateurs=new ArrayList<Utilisateur>();
+    	TypedQuery <Utilisateur> query = em.createNamedQuery("Utilisateur.findByID",Utilisateur.class);
+    	
+    	query.setParameter(1, idUser);
+    	utilisateurs=query.getResultList();
+    	//for (Utilisateur i : utilisateurs) {
+    		//em.remove(i);
+    		//return "utilisateur has been deleted successfully !";}
+    	if( utilisateurs!=null){
+    		 List<Post> posts_to_remove=postService.getAllPostByIdUser(idUser);
+    		 if (!posts_to_remove.isEmpty()) {
+	    		 for (Post p : posts_to_remove) {
+	    			 em.remove(p);
+	    		 }
+    	}
+    		em.remove(utilisateurs.get(0));
+    	return ("utilisateur"+ idUser +"has been removed successfully");}
+    	;
+		return ("utilisateur"+ idUser +"can't be removed");
+    	
+    }
+    public List<Utilisateur> getAllReportedUsers() {
+  
+    	List<Utilisateur> reported_people=new ArrayList<Utilisateur>();
+    	TypedQuery <Utilisateur> query = em.createNamedQuery("Utilisateur.findBynbReports",Utilisateur.class);
+        reported_people = query.getResultList();
+        if(reported_people!=null)
+    	return reported_people;
+        else return null;
+    }
     
     
 }

@@ -95,7 +95,7 @@
                   <h4> Reported List </h4>
                   </div>
                 <ul class="list-group list-group-flush cus-bg">
-				  <c:forEach var="utilisateur" items="${sessionScope.users}">
+				  <c:forEach var="utilisateur" items="${sessionScope.users_reported}">
 				    <c:if test="${sessionScope.PFirst_name != utilisateur.PFirst_name && utilisateur.account.reportsNb!=0 }">
 				      <li  class="list-group-item cus-bg">
 				       <!-- <div class="row">
@@ -106,7 +106,8 @@
 				            <a href="/OtherPorfile.jsp" style="text-decoration: none; color: black;"><p  style="margin-top: 11px;" id="profile-name">${utilisateur.PFirst_name} ${utilisateur.PLast_name}</p></a>
 				          </div>
 				        </div>-->
-				        <div class="row">                        
+				        <div class="row">  
+				        <form action="Controllerdelete" method="get">                      
 				        <div class="col-3 align-items">
                          <a href="/OtherPorfile"><img id="hh" src="data:image/jpeg;base64,<c:out value='${utilisateur.ppic}'/>" data-p-gender="${utilisateur.PGender}" onerror="this.src='https://design.ncsu.edu/doctor-of-design/wp-content/uploads/sites/7/2021/07/late-career-persona-philip.jpg';" height="45" width="51" id="pdp" class="rounded-circle" ></a>
                       </div>
@@ -114,8 +115,10 @@
                              <a href="/OtherPorfile.jsp" style="text-decoration: none; color: black;"><p  style="margin-top: 11px;" id="profile-name">${utilisateur.PFirst_name} ${utilisateur.PLast_name}</p></a>
                         </div>
                         <div class="col-3 align-items">
-                           <input type="submit"  class="btn btn-danger" style="background-color: height:40px;" value="delete">
+                           <input type="submit"  name="deleteBtnUser" class="btn btn-danger" style="background-color: height:40px;" value="delete">
+                           <input type="hidden"  name="del_user"   value="${utilisateur.idUser}"/>
                           </div> 
+                         </form>
                       </div>
 				      </li>
 				    </c:if>

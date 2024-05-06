@@ -239,12 +239,16 @@ public class Controller extends HttpServlet {
 				String pwd=request.getParameter("password");
 				Utilisateur user=userService.getUtilisateurByLoginAndPwd(login, pwd);
 				List<Utilisateur> users=userService.getAllUtilisateurs();
+				List<Utilisateur> users_reported=userService.getAllReportedUsers();
 				List<Post> posts=postService.getAllPost();
+				List<Post> reportedposts=postService.getReportedPost();
 				System.out.println(posts);
 				if (user!=null) {
 					//System.out.println(user.getProfil().getAdmins().size());
 					HttpSession session = request.getSession(true);
 		    		session.setMaxInactiveInterval(600000);
+		    		session.setAttribute("users_reported", users_reported);
+		    		session.setAttribute("reportedposts",reportedposts);
 		    		session.setAttribute("posts",posts);
 		    		session.setAttribute("users",users);
 		    		session.setAttribute("user", user.getIdUser());

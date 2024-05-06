@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u"),
+	@NamedQuery(name="Utilisateur.findBynbReports", query="SELECT u FROM Utilisateur u where account.reportsNb>0"),
 	@NamedQuery(name="Utilisateur.findByID", query="SELECT u FROM Utilisateur u where idUser =?1"),
 	@NamedQuery(name="Utilisateur.findByProfil", query="SELECT u FROM Utilisateur u where profil =?1"),
 	@NamedQuery(name="Utilisateur.findByLoginAndPwd", query="SELECT u FROM Utilisateur u where profil.login =?1 AND profil.password=?2")

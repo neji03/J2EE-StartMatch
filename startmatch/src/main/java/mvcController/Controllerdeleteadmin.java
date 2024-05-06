@@ -47,8 +47,10 @@ public class Controllerdeleteadmin extends HttpServlet {
             String msg=postService.deletePostById(p.getIdPost());
             	System.out.println(msg);
              HttpSession session = request.getSession();
-        	 List<Post> posts=postService.getReportedPost();
-        	 session.setAttribute("reportedposts", posts);
+        	 List<Post> posts_rep=postService.getReportedPost();
+        	 List<Post> posts=postService.getAllPost();
+        	 session.setAttribute("reportedposts", posts_rep);
+        	 session.setAttribute("posts", posts);
             RequestDispatcher rd = request.getRequestDispatcher("consultadminpannel.jsp");
             rd.forward(request, response);
         }
